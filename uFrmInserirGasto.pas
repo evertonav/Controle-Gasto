@@ -121,8 +121,8 @@ procedure TfrmInserirGasto.FormCreate(Sender: TObject);
 begin
   dteDataGasto.Date := Now;
 
-  //edtTipoGasto.Tag := 1;
-  //edtTipoGasto.Text := 'GERAL';
+  edtTipoGasto.Tag := 1;
+  edtTipoGasto.Text := 'GERAL';
 end;
 
 procedure TfrmInserirGasto.VerificarHabilitarBotao;
