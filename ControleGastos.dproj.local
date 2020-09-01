@@ -2,44 +2,44 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2020/06/01 11:24:37.000.737,=C:\Users\Everton\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2020/06/01 11:24:51.000.168,C:\Users\Everton\Documents\Embarcadero\Studio\Projects\ControleGastos.dproj=C:\Users\Everton\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2020/06/01 11:25:15.000.897,C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadrao.pas=C:\Users\Everton\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2020/06/01 11:25:15.000.897,C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadrao.fmx=C:\Users\Everton\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
-    <Transaction>2020/06/01 11:25:23.000.977,C:\Users\Everton\Desktop\Controle de Gastos\ControleGastos.dproj=C:\Users\Everton\Documents\Embarcadero\Studio\Projects\ControleGastos.dproj</Transaction>
+    <Transaction>2020/06/01 11:24:51.000.168,C:\Users\Everton\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Everton\Documents\Embarcadero\Studio\Projects\ControleGastos.dproj</Transaction>
+    <Transaction>2020/06/01 11:25:15.000.897,C:\Users\Everton\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadrao.fmx</Transaction>
+    <Transaction>2020/06/01 11:25:15.000.897,C:\Users\Everton\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadrao.pas</Transaction>
+    <Transaction>2020/06/01 11:25:23.000.977,C:\Users\Everton\Documents\Embarcadero\Studio\Projects\ControleGastos.dproj=C:\Users\Everton\Desktop\Controle de Gastos\ControleGastos.dproj</Transaction>
     <Transaction>2020/06/01 11:51:45.000.406,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
-    <Transaction>2020/06/01 11:52:50.000.171,C:\Users\Everton\Desktop\Controle de Gastos\uFrmPrincipal.fmx=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.fmx</Transaction>
-    <Transaction>2020/06/01 11:52:50.000.171,C:\Users\Everton\Desktop\Controle de Gastos\uFrmPrincipal.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
+    <Transaction>2020/06/01 11:52:50.000.171,C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas=C:\Users\Everton\Desktop\Controle de Gastos\uFrmPrincipal.pas</Transaction>
+    <Transaction>2020/06/01 11:52:50.000.171,C:\Users\Everton\Desktop\Controle de Gastos\Unit1.fmx=C:\Users\Everton\Desktop\Controle de Gastos\uFrmPrincipal.fmx</Transaction>
     <Transaction>2020/06/01 20:38:45.000.725,=C:\Users\Everton\Desktop\Controle de Gastos\uFrmCadTipoGasto.pas</Transaction>
     <Transaction>2020/06/01 20:39:59.000.794,=C:\Users\Everton\Desktop\Controle de Gastos\Unit2.pas</Transaction>
-    <Transaction>2020/06/01 20:40:47.000.077,C:\Users\Everton\Desktop\Controle de Gastos\uFrmInserirGasto.fmx=C:\Users\Everton\Desktop\Controle de Gastos\Unit2.fmx</Transaction>
-    <Transaction>2020/06/01 20:40:47.000.077,C:\Users\Everton\Desktop\Controle de Gastos\uFrmInserirGasto.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit2.pas</Transaction>
+    <Transaction>2020/06/01 20:40:47.000.077,C:\Users\Everton\Desktop\Controle de Gastos\Unit2.pas=C:\Users\Everton\Desktop\Controle de Gastos\uFrmInserirGasto.pas</Transaction>
+    <Transaction>2020/06/01 20:40:47.000.077,C:\Users\Everton\Desktop\Controle de Gastos\Unit2.fmx=C:\Users\Everton\Desktop\Controle de Gastos\uFrmInserirGasto.fmx</Transaction>
     <Transaction>2020/06/01 20:42:35.000.279,=C:\Users\Everton\Desktop\Controle de Gastos\Unit3.pas</Transaction>
-    <Transaction>2020/06/01 20:43:09.000.521,C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadraoCadastro.fmx=C:\Users\Everton\Desktop\Controle de Gastos\Unit3.fmx</Transaction>
-    <Transaction>2020/06/01 20:43:09.000.521,C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadraoCadastro.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit3.pas</Transaction>
+    <Transaction>2020/06/01 20:43:09.000.521,C:\Users\Everton\Desktop\Controle de Gastos\Unit3.pas=C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadraoCadastro.pas</Transaction>
+    <Transaction>2020/06/01 20:43:09.000.521,C:\Users\Everton\Desktop\Controle de Gastos\Unit3.fmx=C:\Users\Everton\Desktop\Controle de Gastos\uFrmPadraoCadastro.fmx</Transaction>
     <Transaction>2020/06/02 21:03:17.000.192,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
-    <Transaction>2020/06/02 21:06:00.000.996,C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas=C:\Users\Everton\Desktop\Controle de Gastos\uMetodosBanco.pas</Transaction>
+    <Transaction>2020/06/02 21:06:00.000.996,C:\Users\Everton\Desktop\Controle de Gastos\uMetodosBanco.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
     <Transaction>2020/06/02 21:06:37.000.187,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
     <Transaction>2020/06/02 21:07:55.000.010,=C:\Users\Everton\Desktop\Controle de Gastos\DataModule.pas</Transaction>
     <Transaction>2020/06/02 21:29:50.000.453,C:\Users\Everton\Desktop\Controle de Gastos\uMetodosBanco.pas=</Transaction>
     <Transaction>2020/06/07 21:25:55.000.780,=C:\Users\Everton\Desktop\Controle de Gastos\uUtils.pas</Transaction>
     <Transaction>2020/06/16 20:05:42.000.405,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
     <Transaction>2020/06/16 20:13:40.000.343,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
-    <Transaction>2020/06/16 20:16:15.000.109,C:\Users\Everton\Desktop\Controle de Gastos\uControleGasto.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
+    <Transaction>2020/06/16 20:16:15.000.109,C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas=C:\Users\Everton\Desktop\Controle de Gastos\uControleGasto.pas</Transaction>
     <Transaction>2020/06/16 20:17:14.000.003,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
-    <Transaction>2020/06/16 20:20:15.000.904,C:\Users\Everton\Desktop\Controle de Gastos\uTipoGasto.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
+    <Transaction>2020/06/16 20:20:15.000.904,C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas=C:\Users\Everton\Desktop\Controle de Gastos\uTipoGasto.pas</Transaction>
     <Transaction>2020/06/16 20:35:51.000.829,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
-    <Transaction>2020/06/16 20:36:15.000.727,C:\Users\Everton\Desktop\Controle de Gastos\uGasto.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
+    <Transaction>2020/06/16 20:36:15.000.727,C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas=C:\Users\Everton\Desktop\Controle de Gastos\uGasto.pas</Transaction>
     <Transaction>2020/06/29 19:46:23.000.091,=C:\Users\Everton\Desktop\Controle de Gastos\Unit1.pas</Transaction>
     <Transaction>2020/06/29 19:58:58.000.410,=C:\Users\Everton\Desktop\Controle de Gastos\Unit2.pas</Transaction>
-    <Transaction>2020/06/29 19:59:27.000.426,C:\Users\Everton\Desktop\Controle de Gastos\uFrmListaGastos.pas=C:\Users\Everton\Desktop\Controle de Gastos\Unit2.pas</Transaction>
-    <Transaction>2020/06/29 19:59:27.000.426,C:\Users\Everton\Desktop\Controle de Gastos\uFrmListaGastos.fmx=C:\Users\Everton\Desktop\Controle de Gastos\Unit2.fmx</Transaction>
+    <Transaction>2020/06/29 19:59:27.000.426,C:\Users\Everton\Desktop\Controle de Gastos\Unit2.pas=C:\Users\Everton\Desktop\Controle de Gastos\uFrmListaGastos.pas</Transaction>
+    <Transaction>2020/06/29 19:59:27.000.426,C:\Users\Everton\Desktop\Controle de Gastos\Unit2.fmx=C:\Users\Everton\Desktop\Controle de Gastos\uFrmListaGastos.fmx</Transaction>
     <Transaction>2020/06/29 20:03:08.000.697,=C:\Users\Everton\Desktop\Controle de Gastos\uFrmListaGenerica.pas</Transaction>
     <Transaction>2020/07/07 20:17:34.000.276,=C:\Users\Everton\Desktop\Controle de Gastos\uFrmCalendario.pas</Transaction>
     <Transaction>2020/07/07 20:19:11.000.104,=C:\Users\Everton\Desktop\Projetos\Controle Vendas -\uCustomCalendar.pas</Transaction>
     <Transaction>2020/07/07 21:00:59.000.380,C:\Users\Everton\Desktop\Projetos\Controle Vendas -\uCustomCalendar.pas=</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android="0033121629"/>
+		<NoProfile iOSSimulator="iPhone5" Android=""/>
 	</ActiveMobileDevice>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="android-support-v4.dex.jar"/>
