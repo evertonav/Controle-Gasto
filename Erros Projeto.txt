@@ -1,0 +1,9 @@
+1 - Não ter nenhum gasto e clicar para mostrar os gastos.
+
+2 - Aumentar tamanho do botão para clicar
+
+3 - Quando clicar no não aparecer o teclado só quando
+  clicar para pesquisar.
+
+4 - No inserir gasto colocar o valor do gasto
+o valor máximo que der.
