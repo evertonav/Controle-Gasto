@@ -35,7 +35,20 @@ Uses
 
 function TGasto.GetTotalGasto: Double;
 begin
-  Result := 0;
+  dm.qrGetTotalGasto.Close;
+
+  if not dm.qrGetTotalGasto.Prepared then
+    dm.qrGetTotalGasto.Prepare;
+
+  dm.qrGetTotalGasto.Params.ParamByName('DATA_INI').AsFloat := StartOfTheMonth(Data);
+  dm.qrGetTotalGasto.Params.ParamByName('DATA_FIM').AsFloat := EndOfTheMonth(Data);
+
+  dm.qrGetTotalGasto.Open;
+
+  if dm.qrGetTotalGasto.Fields[0].AsString = EmptyStr then
+    Result := 0
+  else
+    Result := dm.qrGetTotalGasto.Fields[0].AsFloat;
 end;
 
 procedure TGasto.InserirGasto;

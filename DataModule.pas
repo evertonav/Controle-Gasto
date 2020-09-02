@@ -12,11 +12,6 @@ uses
   system.IOUtils, FMX.Dialogs, FMX.Forms;
 
 type
-  TVendas = packed record
-    TotalVendas: Double;
-    TotalQtdProdutos: Double;
-  end;
-
   Tdm = class(TDataModule)
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
     FDConn: TFDConnection;
