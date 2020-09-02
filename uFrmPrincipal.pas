@@ -94,6 +94,7 @@ begin
   if not Assigned(frmInserirGasto) then
     Application.CreateForm(TfrmInserirGasto, frmInserirGasto);
 
+    //teste
   frmInserirGasto.Show;
 end;
 
