@@ -48,7 +48,7 @@ begin
   if dm.qrGetTotalGasto.Fields[0].AsString = EmptyStr then
     Result := 0
   else
-    Result := dm.qrGetTotalGasto.Fields[0].AsFloat;
+    Result := dm.qrGetTotalGasto.Fields[0].AsCurrency;
 end;
 
 procedure TGasto.InserirGasto;
@@ -84,7 +84,7 @@ begin
   if Value > 0 then
     FValor := Value
   else
-    raise Exception.Create('Digite um valor válido!');
+    raise Exception.Create('Digite um valor vï¿½lido!');
 end;
 
 end.

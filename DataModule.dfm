@@ -107,13 +107,13 @@ object dm: Tdm
     SQL.Strings = (
       'SELECT'
       '  G.COD_GASTO,'
-      '  G.VALOR_GASTO'
+      '  SUM(G.VALOR_GASTO) as VALOR_GASTO'
       'FROM'
       '  GASTO G'
       'WHERE DATA_GASTO > :DATA_INI'
       '  AND DATA_GASTO < :DATA_FIM'
       '  AND G.COD_TIPO_GASTO = :ICOD_TIPO_GASTO'
-      'ORDER BY G.VALOR_GASTO')
+      'GROUP BY G.VALOR_GASTO')
     Left = 72
     Top = 272
     ParamData = <

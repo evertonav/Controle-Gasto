@@ -192,8 +192,6 @@ begin
                       var
                         lRtcItemLista: TRectangle;
                       begin
-                        lRtcItemLista := TRectangle.Create(vsbListaGastos);
-
                         lblTipoGasto.Text := pTitulo;
                         lblValorGasto.Text := FormatFloat('R$#0.00', pValor);
                         rtcItemLista.Visible := False;
@@ -206,7 +204,7 @@ begin
                         while not DM.qrGetGastoUnitario.Eof do
                         begin
                           CriarItemListView(PesquisarListView(lRtcItemLista),
-                                            DM.qrGetGastoUnitario.FieldByName('VALOR_GASTO').AsFloat,
+                                            DM.qrGetGastoUnitario.FieldByName('VALOR_GASTO').AsCurrency,
                                             ltvItensGasto,
                                             DM.qrGetGastoUnitario.FieldByName('COD_GASTO').AsInteger);
 

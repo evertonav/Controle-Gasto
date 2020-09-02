@@ -90,7 +90,7 @@ begin
   {$IFDEF MSWINDOWS}
   try
     FDConn.Connected := False;
-    FDConn.Params.Values['Database'] := 'C:\Users\Everton\Desktop\Controle de Gastos\Nova pasta\DB\Datashop.db';
+    FDConn.Params.Values['Database'] := 'C:\Controle\DB\Datashop.db';
     FDConn.Connected := true;
   except
   on E: Exception do
