@@ -140,6 +140,7 @@ inherited frmListaGastos: TfrmListaGastos
       Size.Height = 80.000000000000000000
       Size.PlatformDefault = False
       Stroke.Color = xFFABABAB
+      Visible = False
       XRadius = 3.000000000000000000
       YRadius = 2.000000000000000000
       object lytTopoItemLista: TLayout

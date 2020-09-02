@@ -62,8 +62,6 @@ begin
 end;
 
 procedure TfrmInserirGasto.btnConfirmarClick(Sender: TObject);
-var
-  lMinhaThread: TThread;
 begin
   frmInserirGasto.InserirComThread(
     procedure ()
@@ -89,7 +87,7 @@ begin
         end);
     end,
 
-    //OUTRO PARÂMETRO DO MÉTODO
+    //OUTRO PARï¿½METRO DO Mï¿½TODO
     frmInserirGasto
   );
 end;
@@ -101,7 +99,7 @@ end;
 
 procedure TfrmInserirGasto.edtValorGastoChangeTracking(Sender: TObject);
 begin
-  TMask.MaskFloat(TEdit(Sender), '#,##0.00');
+  TMask.MaskFloat(TEdit(Sender), '#0.00');
 
   VerificarHabilitarBotao;
 end;

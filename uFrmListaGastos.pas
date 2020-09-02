@@ -70,7 +70,7 @@ implementation
 
 Uses
   DataModule, Loading, FMX.DialogService, System.DateUtils, uUtils,
-  FireDAC.Stan.Param, uGasto;
+  FireDAC.Stan.Param, uGasto, uFrmPrincipal;
 
 {$R *.fmx}
 
@@ -199,6 +199,7 @@ begin
                         lRtcItemLista := TRectangle(rtcItemLista.Clone(vsbListaGastos));
                         lRtcItemLista.Parent := vsbListaGastos;
                         lRtcItemLista.Tag := pCodTipoGasto;
+                        lRtcItemLista.Name := rtcItemLista.Name + pCodTipoGasto.ToString;
                         lRtcItemLista.Visible := True;
 
                         while not DM.qrGetGastoUnitario.Eof do
@@ -303,6 +304,8 @@ procedure TfrmListaGastos.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   TFuncLista.LimparLista(vsbListaGastos, rtcItemLista.Name);
 
+  frmPrincipal.AtualizarTotalGasto(DataGasto);
+
   Action := TCloseAction.caFree;
   frmListaGastos := nil;
 end;
@@ -371,6 +374,8 @@ begin
         if (TLayout(pRetanguloMaste.Children[lIRetangulo]).Children[lIBotao] is TSpeedButton) then
         begin
           TSpeedButton(TLayout(pRetanguloMaste.Children[lIRetangulo]).Children[lIBotao]).Tag := pCodTipoGasto;
+          TSpeedButton(TLayout(pRetanguloMaste.Children[lIRetangulo]).Children[lIBotao]).Name := btnExpandirReprimir.Name + pCodTipoGasto.ToString;
+          TSpeedButton(TLayout(pRetanguloMaste.Children[lIRetangulo]).Children[lIBotao]).Text := EmptyStr;
           TSpeedButton(TLayout(pRetanguloMaste.Children[lIRetangulo]).Children[lIBotao]).OnClick := pBotaoReimprimirExpandir.OnClick;
         end;
       end;
