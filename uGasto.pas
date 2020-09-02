@@ -1,4 +1,4 @@
-unit uGasto;
+﻿unit uGasto;
 
 interface
 
@@ -84,7 +84,7 @@ begin
   if Value > 0 then
     FValor := Value
   else
-    raise Exception.Create('Digite um valor v�lido!');
+    raise Exception.Create('Digite um valor válido!');
 end;
 
 end.
