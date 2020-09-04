@@ -18,20 +18,21 @@ Type
                               const pMask: string);
   end;
 
-  ////////////////////////////////////////////////
-
   THardware = class
   public
     class procedure BotaoBackTeclado(var Key: Word);
     class procedure Vibrar(const pTempo: Integer);
   end;
 
-///////////////
-///
   TData = class
   public
     class function GetUltimoDiaMes(const pData: TDate): Integer;
     class function GetNomeMes(const pData: TDate): string;
+  end;
+
+  TFormatoNumeros = class
+  public
+    class function GetFormatoValidoFloat(const pValor: string): Double;
   end;
 
   TFuncLista = class
@@ -221,6 +222,14 @@ begin
   end;
 
   pListBox.EndUpdate;
+end;
+
+{ TFormatoNumeros }
+
+class function TFormatoNumeros.GetFormatoValidoFloat(
+  const pValor: string): Double;
+begin
+  Result := pValor.Replace('.', ',', [rfReplaceAll]).ToDouble;
 end;
 
 end.

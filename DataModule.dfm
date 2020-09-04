@@ -42,8 +42,8 @@ object dm: Tdm
       '  GASTO G'
       'JOIN '
       '  TIPO_GASTO TP ON TP.COD_TIPO_GASTO = G.COD_TIPO_GASTO'
-      'WHERE DATA_GASTO > :DATA_INI'
-      '  AND DATA_GASTO < :DATA_FIM'
+      'WHERE DATA_GASTO >= :DATA_INI'
+      '  AND DATA_GASTO <= :DATA_FIM'
       'GROUP BY '
       '  TP.NOME_TIPO_GASTO,'
       '  TP.COD_TIPO_GASTO')

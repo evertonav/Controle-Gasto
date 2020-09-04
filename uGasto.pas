@@ -29,7 +29,7 @@ implementation
 
 Uses
   System.SysUtils, DataModule, System.DateUtils, FMX.DialogService,
-  FireDAC.Stan.Param, Data.DB;
+  FireDAC.Stan.Param, Data.DB, uUtils;
 
 { TGasto }
 
@@ -48,7 +48,7 @@ begin
   if dm.qrGetTotalGasto.Fields[0].AsString = EmptyStr then
     Result := 0
   else
-    Result := dm.qrGetTotalGasto.Fields[0].AsCurrency;
+    Result := TFormatoNumeros.GetFormatoValidoFloat(dm.qrGetTotalGasto.Fields[0].AsString);
 end;
 
 procedure TGasto.InserirGasto;

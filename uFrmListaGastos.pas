@@ -131,13 +131,42 @@ begin
   lMinhaThread := TThread.CreateAnonymousThread(
                     procedure ()
                     begin
-                      if not DM.qrDeletar.Prepared then
-                        dm.qrDeletar.Prepare;
+                      TThread.Synchronize(
+                        TThread.CurrentThread,
+                        PROCEDURE ()
+                        BEGIN
+                          TLoading.Show(frmListaGastos, 'Carregando...');
+                        END
+                        );
+                      try
+                        try
+                          if not DM.qrDeletar.Prepared then
+                            dm.qrDeletar.Prepare;
 
-                      dm.qrDeletar.Params.ParamByName('COD_GASTO').AsInteger := pCodGasto;
-                      dm.qrDeletar.ExecSQL;
+                          dm.qrDeletar.Params.ParamByName('COD_GASTO').AsInteger := pCodGasto;
+                          dm.qrDeletar.ExecSQL;
 
-                      TFuncLista.LimparLista(vsbListaGastos, rtcItemLista.Name);
+                          TFuncLista.LimparLista(vsbListaGastos, rtcItemLista.Name);
+                        except
+                          on E: Exception do
+                            TThread.Synchronize(
+                              TThread.CurrentThread,
+                              PROCEDURE ()
+                              BEGIN
+                                TLoading.Hide;
+                                TDialogService.ShowMessage(e.Message);
+                              END
+                            );
+                        end;
+                      finally
+                        TThread.Synchronize(
+                          TThread.CurrentThread,
+                          PROCEDURE ()
+                          BEGIN
+                            TLoading.Hide;
+                          END
+                          );
+                      end;
                     end);
 
   lMinhaThread.FreeOnTerminate := True;
@@ -184,8 +213,6 @@ var
 begin
   lMinhaThread := TThread.CreateAnonymousThread(
                     procedure ()
-                    var
-                      I: Integer;
 
                       procedure CriarItemListaGasto(const pTitulo: string;
                         const pValor: Double; const pCodTipoGasto: Integer);
@@ -194,13 +221,14 @@ begin
                       begin
                         lblTipoGasto.Text := pTitulo;
                         lblValorGasto.Text := FormatFloat('R$#0.00', pValor);
-                        rtcItemLista.Visible := False;
 
+                        {$REGION 'Clonar Item Lista'}
                         lRtcItemLista := TRectangle(rtcItemLista.Clone(vsbListaGastos));
                         lRtcItemLista.Parent := vsbListaGastos;
                         lRtcItemLista.Tag := pCodTipoGasto;
                         lRtcItemLista.Name := rtcItemLista.Name + pCodTipoGasto.ToString;
                         lRtcItemLista.Visible := True;
+                        {$ENDREGION}
 
                         while not DM.qrGetGastoUnitario.Eof do
                         begin
@@ -244,7 +272,7 @@ begin
                         try
                           vsbListaGastos.BeginUpdate;
                           try
-                            for I := 0 to DM.qrGetGastos.RecordCount - 1 do
+                            while not DM.qrGetGastos.Eof do
                             begin
                               try
                                 CarregarGastoDetalhado(StartOfTheMonth(DataGasto),

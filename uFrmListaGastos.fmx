@@ -5,7 +5,6 @@ inherited frmListaGastos: TfrmListaGastos
   OnShow = FormShow
   DesignerMasterStyle = 3
   inherited lytTopo: TLayout
-    Margins.Bottom = 15.000000000000000000
     Size.Width = 317.000000000000000000
     inherited rctTitulo: TRectangle
       Size.Width = 317.000000000000000000
@@ -123,12 +122,14 @@ inherited frmListaGastos: TfrmListaGastos
   end
   object vsbListaGastos: TVertScrollBox
     Align = Client
+    Margins.Top = 15.000000000000000000
+    Margins.Bottom = 15.000000000000000000
     Size.Width = 317.000000000000000000
-    Size.Height = 415.000000000000000000
+    Size.Height = 400.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
     Viewport.Width = 317.000000000000000000
-    Viewport.Height = 415.000000000000000000
+    Viewport.Height = 400.000000000000000000
     object rtcItemLista: TRectangle
       Align = Top
       Fill.Color = xC68ACE65

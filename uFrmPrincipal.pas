@@ -194,7 +194,7 @@ begin
     if YearOf(pData) > YearOf(Now) then
       Result := IncYear(pData, -1)
     else
-      Result := IncYear(pData, -1)
+      Result := IncYear(pData, 1)
   end;
 end;
 
