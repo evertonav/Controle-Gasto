@@ -30,7 +30,7 @@ var
 implementation
 
 Uses
-  uFrmPrincipal, DataModule, uTipoGasto;
+  uFrmPrincipal, DataModule, Controle.Interfaces, Controle;
 
 {$R *.fmx}
 
@@ -38,17 +38,14 @@ procedure TfrmCadTipoGasto.btnConfirmarClick(Sender: TObject);
 begin
   frmCadTipoGasto.InserirComThread(
     procedure ()
-    var
-      lTipoGasto: TTipoGasto;
     begin
-      lTipoGasto := TTipoGasto.Create;
-      try
-        lTipoGasto.Descricao := edtTipoGasto.Text;
-
-        lTipoGasto.InserirTipoGasto;
-      finally
-        lTipoGasto.DisposeOf;
-      end;
+      TControle
+        .Criar
+          .TipoGasto
+            .Entidade
+              .Descricao(edtTipoGasto.Text)
+            .ModelDAOTipoGasto
+          .Inserir;;
 
       TThread.Synchronize(
         TThread.CurrentThread,
