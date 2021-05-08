@@ -3,21 +3,33 @@
 interface
 
 Uses
-  uControleGasto, uTipoGasto;
+  uControleGasto,
+  uTipoGasto,
+  Model.DAO.Interfaces;
 
 type
   TEntidadeGasto = class
   private
+    [weak]
+    FModelDAOGasto: IModelDAOInterface<TEntidadeGasto>;
+
     FValor: Double;
     FTipoGasto: Integer;
     FData: TDate;
-    procedure SetData(const Value: TDate);
-    procedure SetTipoGasto(const Value: Integer);
-    procedure SetValor(const Value: Double);
   public
-    property Data: TDate read FData write SetData;
-    property Valor: Double read FValor write SetValor;
-    property Tipo: Integer read FTipoGasto write SetTipoGasto;
+    constructor Create(pModelDAOGasto: IModelDAOInterface<TEntidadeGasto>);
+    destructor Destroy; override;
+
+    function Data(const pValor: TDate): TEntidadeGasto; overload;
+    function Data: TDate; overload;
+
+    function Valor(const pValor: Double): TEntidadeGasto; overload;
+    function Valor: Double; overload;
+
+    function Tipo(const pValor: Integer): TEntidadeGasto; overload;
+    function Tipo: Integer; overload;
+
+    function ModelDAOGasto: IModelDAOInterface<TEntidadeGasto>;
   end;
 
 implementation
@@ -28,22 +40,59 @@ Uses
 
 { TGasto }
 
-procedure TEntidadeGasto.SetData(const Value: TDate);
+constructor TEntidadeGasto.Create(
+  pModelDAOGasto: IModelDAOInterface<TEntidadeGasto>);
 begin
-  FData := Value;
+  FModelDAOGasto := pModelDAOGasto;
 end;
 
-procedure TEntidadeGasto.SetTipoGasto(const Value: Integer);
+function TEntidadeGasto.Data: TDate;
 begin
-  FTipoGasto := Value;
+  Result := FData;
 end;
 
-procedure TEntidadeGasto.SetValor(const Value: Double);
+destructor TEntidadeGasto.Destroy;
 begin
-  if Value > 0 then
-    FValor := Value
-  else
+
+end;
+
+function TEntidadeGasto.ModelDAOGasto: IModelDAOInterface<TEntidadeGasto>;
+begin
+  Result := FModelDAOGasto;
+end;
+
+function TEntidadeGasto.Data(const pValor: TDate): TEntidadeGasto;
+begin
+  FData := pValor;
+
+  Result := Self;
+end;
+
+function TEntidadeGasto.Tipo(const pValor: Integer): TEntidadeGasto;
+begin
+  FTipoGasto := pValor;
+
+  Result := Self;
+end;
+
+function TEntidadeGasto.Tipo: Integer;
+begin
+  Result := FTipoGasto;
+end;
+
+function TEntidadeGasto.Valor: Double;
+begin
+  Result := FValor;
+end;
+
+function TEntidadeGasto.Valor(const pValor: Double): TEntidadeGasto;
+begin
+  if pValor <= 0 then
     raise Exception.Create('Digite um valor válido!');
+
+  FValor := pValor;
+
+  Result := Self;
 end;
 
 end.

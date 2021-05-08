@@ -4,18 +4,18 @@ interface
 
 uses
   Model.DAO.Gasto, Model.DAO.Interfaces, Model.Entidade.TipoGasto,
-  Model.DAO.TipoGasto, Controle.Interfaces;
+  Model.DAO.TipoGasto, Controle.Interfaces, Model.Entidade.Gasto;
 
 type
   TControle = class(TInterfacedObject, IControleInterfaces)
   private
-    //FModelDAOGasto: TModelDAOGasto;
+    FModelDAOGasto: TModelDAOGasto;
     FModelDAOTipoGasto: TModelDAOTipoGasto;
   public
     destructor Destroy; override;
 
     class function Criar: IControleInterfaces;
-    //function Gasto: TModelDAOGasto;
+    function Gasto: IModelDAOInterface<TEntidadeGasto>;
     function TipoGasto: IModelDAOInterface<TEntidadeTipoGasto>;
   end;
 
@@ -30,19 +30,17 @@ end;
 
 destructor TControle.Destroy;
 begin
-  {if Assigned(FModelDAOGasto) then
-    FModelDAOGasto.Destroy;}
 
   inherited;
 end;
 
-{function TControle.Gasto: TModelDAOGasto;
+function TControle.Gasto: IModelDAOInterface<TEntidadeGasto>;
 begin
   if not Assigned(FModelDAOGasto) then
     FModelDAOGasto := TModelDAOGasto.Create;
 
   Result := FModelDAOGasto;
-end;   }
+end;
 
 function TControle.TipoGasto: IModelDAOInterface<TEntidadeTipoGasto>;
 begin

@@ -1,4 +1,4 @@
-unit uFrmInserirGasto;
+﻿unit uFrmInserirGasto;
 
 interface
 
@@ -47,7 +47,12 @@ var
 implementation
 
 Uses
-  DataModule, uUtils, uGasto, Loading, uFrmListaGenerica, uFrmPrincipal;
+  DataModule,
+  uUtils,
+  Loading,
+  uFrmListaGenerica,
+  uFrmPrincipal,
+  Controle;
 
 {$R *.fmx}
 
@@ -65,19 +70,16 @@ procedure TfrmInserirGasto.btnConfirmarClick(Sender: TObject);
 begin
   frmInserirGasto.InserirComThread(
     procedure ()
-    var
-      lGasto: TGasto;
     begin
-      lGasto := TGasto.Create;
-      try
-        lGasto.Data := dteDataGasto.Date;
-        lGasto.Valor := edtValorGasto.Text.ToDouble;
-        lGasto.Tipo := edtTipoGasto.Tag;
-
-        lGasto.InserirGasto;
-      finally
-        lGasto.DisposeOf;
-      end;
+      TControle
+        .Criar
+          .Gasto
+            .Entidade
+              .Data(dteDataGasto.Date)
+              .Valor(edtValorGasto.Text.ToDouble)
+              .Tipo(edtTipoGasto.Tag)
+            .ModelDAOGasto
+          .Inserir;
 
       TThread.Synchronize(
         TThread.CurrentThread,

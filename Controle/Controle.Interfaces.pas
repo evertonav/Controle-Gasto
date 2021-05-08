@@ -4,11 +4,13 @@ interface
 
 uses
   Model.DAO.Interfaces,
-  Model.Entidade.TipoGasto;
+  Model.Entidade.TipoGasto,
+  Model.Entidade.Gasto;
 
 type
   IControleInterfaces = Interface
     function TipoGasto: IModelDAOInterface<TEntidadeTipoGasto>;
+    function Gasto: IModelDAOInterface<TEntidadeGasto>;
   End;
 
 implementation
