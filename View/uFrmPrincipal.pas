@@ -77,7 +77,7 @@ implementation
 
 Uses
   uFrmInserirGasto, uFrmCadTipoGasto, uFrmListaGastos, DataModule, uGasto,
-  System.DateUtils, uUtils;
+  System.DateUtils, uUtils, Controle.GetDados, Controle.GetDadosInterface;
 
 {$R *.fmx}
 
@@ -120,19 +120,17 @@ end;
 
 procedure TfrmPrincipal.AtualizarTotalGasto(const pDataGasto: TDate);
 var
-  lGasto: TGasto;
+  lGetDadosGasto: IControleGetDadosInterface;
 begin
-  lGasto := TGasto.Create;
-  try
-    if pDataGasto = -1 then
-      lGasto.Data := lblData.TagFloat
-    else
-      lGasto.Data := pDataGasto;
+  lGetDadosGasto := TControleGetDados.Criar;
 
-    lblQtdVendido.Text := FormatFloat('R$#0.00', lGasto.GetTotalGasto);
-  finally
-    lGasto.Disposeof;
-  end;
+  if pDataGasto = -1 then
+    lGetDadosGasto.DadosGasto.Entidade.Data(lblData.TagFloat)
+  else
+    lGetDadosGasto.DadosGasto.Entidade.Data(pDataGasto);
+
+  lblQtdVendido.Text := FormatFloat('R$#0.00',
+                                    lGetDadosGasto.DadosGasto.GetTotal);
 end;
 
 procedure TfrmPrincipal.btnCadTipoGastoClick(Sender: TObject);

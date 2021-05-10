@@ -3,7 +3,7 @@ unit Model.Conexao.FireDac;
 interface
 
 uses
-  FireDAC.Comp.Client, Model.Conexao.Interfaces;
+  FireDAC.Comp.Client, Model.Conexao.Interfaces, Data.DB;
 
 type
   TModelConexaoFiredac = class(TInterfacedObject, iModelConexaoInterfaces)
@@ -20,6 +20,7 @@ type
     function AdicionarParametros(const pNomeParametro: string;
                                  const pValue: Variant): iModelConexaoInterfaces;
 
+    function ExecutarRetornar: TDataSet;
     function Executar: iModelConexaoInterfaces;
 
     class function Criar : iModelConexaoInterfaces;
@@ -102,6 +103,13 @@ begin
 
   if Assigned(FQuery) then
     FQuery.DisposeOf;
+end;
+
+function TModelConexaoFiredac.ExecutarRetornar: TDataSet;
+begin
+  FQuery.Open;
+
+  Result := FQuery;
 end;
 
 function TModelConexaoFiredac.Executar: iModelConexaoInterfaces;

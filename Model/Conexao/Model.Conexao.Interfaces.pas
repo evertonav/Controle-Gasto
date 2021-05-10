@@ -2,6 +2,9 @@ unit Model.Conexao.Interfaces;
 
 interface
 
+uses
+  Data.DB;
+
 type
   iModelConexaoInterfaces = interface
     function AdicionarSQL(const pSQL: string): iModelConexaoInterfaces;
@@ -9,6 +12,7 @@ type
     function AdicionarParametros(const pNomeParametro: string;
                                  const pValue: Variant): iModelConexaoInterfaces;
 
+    function ExecutarRetornar: TDataSet;
     function Executar: iModelConexaoInterfaces;
   end;
 
