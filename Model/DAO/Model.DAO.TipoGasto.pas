@@ -18,9 +18,13 @@ type
     class function Criar: IModelDAOInterface<TEntidadeTipoGasto>;
     function Entidade: TEntidadeTipoGasto;
     function Inserir: IModelDAOInterface<TEntidadeTipoGasto>;
+    function Deletar: IModelDAOInterface<TEntidadeTipoGasto>;
   end;
 
 implementation
+
+uses
+  System.SysUtils;
 
 { TModelDAOTipoGasto }
 
@@ -33,6 +37,13 @@ end;
 class function TModelDAOTipoGasto.Criar: IModelDAOInterface<TEntidadeTipoGasto>;
 begin
   Result := TModelDAOTipoGasto.Create;
+end;
+
+function TModelDAOTipoGasto.Deletar: IModelDAOInterface<TEntidadeTipoGasto>;
+begin
+  raise Exception.Create('Sem implementação!');
+
+  Result := Self;
 end;
 
 destructor TModelDAOTipoGasto.Destroy;

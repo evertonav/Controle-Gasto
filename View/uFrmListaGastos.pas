@@ -70,7 +70,7 @@ implementation
 
 Uses
   DataModule, Loading, FMX.DialogService, System.DateUtils, uUtils,
-  FireDAC.Stan.Param, uGasto, uFrmPrincipal;
+  FireDAC.Stan.Param, uGasto, uFrmPrincipal, Controle;
 
 {$R *.fmx}
 
@@ -140,11 +140,13 @@ begin
                         );
                       try
                         try
-                          if not DM.qrDeletar.Prepared then
-                            dm.qrDeletar.Prepare;
-
-                          dm.qrDeletar.Params.ParamByName('COD_GASTO').AsInteger := pCodGasto;
-                          dm.qrDeletar.ExecSQL;
+                          TControle
+                            .Criar
+                              .Gasto
+                                .Entidade
+                                  .Codigo(pCodGasto)
+                                .ModelDAOGasto
+                              .Deletar;
 
                           TFuncLista.LimparLista(vsbListaGastos, rtcItemLista.Name);
                         except

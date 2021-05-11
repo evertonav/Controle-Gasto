@@ -17,6 +17,7 @@ type
 
     function Entidade: TEntidadeGasto;
     function Inserir: IModelDAOInterface<TEntidadeGasto>;
+    function Deletar: IModelDAOInterface<TEntidadeGasto>;
   end;
 
 implementation
@@ -30,6 +31,18 @@ constructor TModelDAOGasto.Create;
 begin
   FEntidadeGasto := TEntidadeGasto.Create(Self);
   FConexao := TModelConexaoFiredac.Criar;
+end;
+
+function TModelDAOGasto.Deletar: IModelDAOInterface<TEntidadeGasto>;
+const
+  CONST_DELETAR_GASTO = 'DELETE FROM GASTO WHERE COD_GASTO = :COD_GASTO';
+begin
+  FConexao
+    .AdicionarSQL(CONST_DELETAR_GASTO)
+    .AdicionarParametros('COD_GASTO', FEntidadeGasto.Codigo)
+    .Executar;
+
+  Result := Self;
 end;
 
 destructor TModelDAOGasto.Destroy;

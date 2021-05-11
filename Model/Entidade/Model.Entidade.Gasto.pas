@@ -13,12 +13,16 @@ type
     [weak]
     FModelDAOGasto: IModelDAOInterface<TEntidadeGasto>;
 
+    FCodigo: Integer;
     FValor: Double;
     FTipoGasto: Integer;
     FData: TDate;
   public
     constructor Create(pModelDAOGasto: IModelDAOInterface<TEntidadeGasto>);
     destructor Destroy; override;
+
+    function Codigo(const pValor: Integer): TEntidadeGasto; overload;
+    function Codigo: Integer; overload;
 
     function Data(const pValor: TDate): TEntidadeGasto; overload;
     function Data: TDate; overload;
@@ -39,6 +43,18 @@ Uses
   FireDAC.Stan.Param, Data.DB, uUtils;
 
 { TGasto }
+
+function TEntidadeGasto.Codigo: Integer;
+begin
+  Result := FCodigo;
+end;
+
+function TEntidadeGasto.Codigo(const pValor: Integer): TEntidadeGasto;
+begin
+  FCodigo := pValor;
+
+  Result := Self;
+end;
 
 constructor TEntidadeGasto.Create(
   pModelDAOGasto: IModelDAOInterface<TEntidadeGasto>);
