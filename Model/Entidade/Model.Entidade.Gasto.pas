@@ -3,8 +3,6 @@
 interface
 
 Uses
-  uControleGasto,
-  uTipoGasto,
   Model.DAO.Interfaces;
 
 type

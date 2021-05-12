@@ -3,7 +3,7 @@ unit Model.DAO.Gasto;
 interface
 
 Uses
-  DataModule, Model.Entidade.Gasto, System.DateUtils, uControleGasto,
+  DataModule, Model.Entidade.Gasto, System.DateUtils,
   Model.Conexao.Interfaces, Model.Conexao.FireDac, Model.DAO.Interfaces;
 
 type

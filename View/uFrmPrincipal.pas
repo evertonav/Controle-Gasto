@@ -76,7 +76,7 @@ var
 implementation
 
 Uses
-  uFrmInserirGasto, uFrmCadTipoGasto, uFrmListaGastos, DataModule, uGasto,
+  uFrmInserirGasto, uFrmCadTipoGasto, uFrmListaGastos, DataModule,
   System.DateUtils, uUtils, Controle.GetDados, Controle.GetDadosInterface;
 
 {$R *.fmx}

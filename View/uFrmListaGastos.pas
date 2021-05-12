@@ -70,7 +70,7 @@ implementation
 
 Uses
   DataModule, Loading, FMX.DialogService, System.DateUtils, uUtils,
-  FireDAC.Stan.Param, uGasto, uFrmPrincipal, Controle;
+  FireDAC.Stan.Param, uFrmPrincipal, Controle;
 
 {$R *.fmx}
 
