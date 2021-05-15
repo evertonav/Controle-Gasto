@@ -26,15 +26,14 @@ type
 implementation
 
 uses
-  DataModule, uUtils, System.DateUtils, System.SysUtils, FireDAC.Stan.Param,
-  Model.Conexao.FireDac;
+  DataModule, uUtils, System.DateUtils, System.SysUtils, Model.Conexao;
 
 { TModelDAOGetDadosGasto }
 
 constructor TModelDAOGetDadosGasto.Create;
 begin
   FEntidadeGasto := TEntidadeGasto.Create(TModelDAOGasto.Create);
-  FConexao := TModelConexaoFiredac.Criar;
+  FConexao := TModelConexao.Criar;
 end;
 
 destructor TModelDAOGetDadosGasto.Destroy;

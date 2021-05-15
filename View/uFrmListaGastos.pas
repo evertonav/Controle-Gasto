@@ -36,12 +36,12 @@ type
     { Private declarations }
     procedure CarregarListaGastos;
 
-    procedure CriarItemListView(const pListView: TListView;
+    {procedure CriarItemListView(const pListView: TListView;
                                 const pValorGasto: Double;
                                 const pListViewPadrao: TListView;
-                                const pCodigoGasto: Integer);
+                                const pCodigoGasto: Integer);}
 
-    function PesquisarListView(const pComponentePadrao: TFmxObject): TListView;
+    //function PesquisarListView(const pComponentePadrao: TFmxObject): TListView;
 
     procedure SetDataGasto(const Value: TDateTime);
 
@@ -49,15 +49,13 @@ type
 
     procedure CarregarListaGasto(Sender: TObject);
 
-    procedure CarregarGasto;
-
-    procedure CarregarGastoDetalhado(const pDataInicial: TDate;
+    {procedure CarregarGastoDetalhado(const pDataInicial: TDate;
                                      const pDataFinal: TDate ;
-                                     const pCodigoTipoGasto: Integer);
+                                     const pCodigoTipoGasto: Integer); }
 
-    procedure TratarReprimirExpandir(const pRetanguloMaste: TRectangle;
+    {procedure TratarReprimirExpandir(const pRetanguloMaste: TRectangle;
                                      const pBotaoReimprimirExpandir: TSpeedButton;
-                                     const pCodTipoGasto: Integer);
+                                     const pCodTipoGasto: Integer);}
   public
     { Public declarations }
     property DataGasto: TDateTime read FDataGasto write SetDataGasto;
@@ -70,7 +68,8 @@ implementation
 
 Uses
   DataModule, Loading, FMX.DialogService, System.DateUtils, uUtils,
-  FireDAC.Stan.Param, uFrmPrincipal, Controle;
+  FireDAC.Stan.Param, uFrmPrincipal, Controle, Controle.GetDados,
+  Controle.GetDadosInterface;
 
 {$R *.fmx}
 
@@ -102,7 +101,7 @@ begin
   Self.Close;
 end;
 
-procedure TfrmListaGastos.CriarItemListView(const pListView: TListView;
+{procedure TfrmListaGastos.CriarItemListView(const pListView: TListView;
  const pValorGasto: Double; const pListViewPadrao: TListView;
  const pCodigoGasto: Integer);
 var
@@ -122,7 +121,7 @@ begin
   lItemText.PlaceOffset.X := 25;
   lItemText.PlaceOffset.Y := 0;
   lItemText.TagFloat := pCodigoGasto;
-end;
+end; }
 
 procedure TfrmListaGastos.DeletarGasto(const pCodGasto: Integer);
 var
@@ -176,22 +175,19 @@ begin
   lMinhaThread.Start;
 end;
 
-procedure TfrmListaGastos.CarregarGasto;
-begin
-  dm.qrGetGastos.Close;
-
-  if not dm.qrGetGastos.Prepared then
-    dm.qrGetGastos.Prepare;
-
-  dm.qrGetGastos.Params.ParamByName('DATA_INI').AsFloat := StartOfTheMonth(DataGasto);
-  dm.qrGetGastos.Params.ParamByName('DATA_FIM').AsFloat := EndOfTheMonth(DataGasto);
-
-  dm.qrGetGastos.Open;
-end;
-
-procedure TfrmListaGastos.CarregarGastoDetalhado(const pDataInicial,
+{procedure TfrmListaGastos.CarregarGastoDetalhado(const pDataInicial,
   pDataFinal: TDate; const pCodigoTipoGasto: Integer);
 begin
+{SELECT
+  G.COD_GASTO,
+  SUM(G.VALOR_GASTO) as VALOR_GASTO
+FROM
+  GASTO G
+WHERE DATA_GASTO > :DATA_INI
+  AND DATA_GASTO < :DATA_FIM
+  AND G.COD_TIPO_GASTO = :ICOD_TIPO_GASTO
+GROUP BY G.VALOR_GASTO
+}{
   DM.qrGetGastoUnitario.Close;
 
   if not dm.qrGetGastoUnitario.Prepared then
@@ -203,7 +199,7 @@ begin
 
   DM.qrGetGastoUnitario.Open;
 end;
-
+      }
 procedure TfrmListaGastos.CarregarListaGasto(Sender: TObject);
 begin
   CarregarListaGastos;
@@ -215,6 +211,8 @@ var
 begin
   lMinhaThread := TThread.CreateAnonymousThread(
                     procedure ()
+                    var
+                      lControleGetDados: IControleGetDadosInterface;
 
                       procedure CriarItemListaGasto(const pTitulo: string;
                         const pValor: Double; const pCodTipoGasto: Integer);
@@ -232,7 +230,7 @@ begin
                         lRtcItemLista.Visible := True;
                         {$ENDREGION}
 
-                        while not DM.qrGetGastoUnitario.Eof do
+                        {while not DM.qrGetGastoUnitario.Eof do
                         begin
                           CriarItemListView(PesquisarListView(lRtcItemLista),
                                             DM.qrGetGastoUnitario.FieldByName('VALOR_GASTO').AsCurrency,
@@ -244,7 +242,7 @@ begin
 
                         TratarReprimirExpandir(lRtcItemLista,
                                                btnExpandirReprimir,
-                                               pCodTipoGasto);
+                                               pCodTipoGasto);}
                       end;
 
                     begin
@@ -257,7 +255,13 @@ begin
                         );
 
                       try
-                        CarregarGasto;
+                        lControleGetDados := TControleGetDados.Criar;
+
+                        lControleGetDados
+                          .ValorGastoPorTipoGasto
+                            .DataInicial(StartOfTheMonth(DataGasto))
+                            .DataFinal(EndOfTheMonth(DataGasto))
+                          .Iniciar;
                       except
                         on E: Exception do
                         TThread.Synchronize(
@@ -274,27 +278,27 @@ begin
                         try
                           vsbListaGastos.BeginUpdate;
                           try
-                            while not DM.qrGetGastos.Eof do
+                            while not lControleGetDados.ValorGastoPorTipoGasto.Fim do
                             begin
                               try
-                                CarregarGastoDetalhado(StartOfTheMonth(DataGasto),
+                                {CarregarGastoDetalhado(StartOfTheMonth(DataGasto),
                                                        EndOfTheMonth(DataGasto),
-                                                       DM.qrGetGastos.FieldByName('COD_TIPO_GASTO').AsInteger);
+                                                       DM.qrGetGastos.FieldByName('COD_TIPO_GASTO').AsInteger);}
 
-                                CriarItemListaGasto(DM.qrGetGastos.FieldByName('NOME_TIPO_GASTO').AsString,
-                                                    DM.qrGetGastos.FieldByName('VALOR_GASTO').AsCurrency,
-                                                    dm.qrGetGastos.FieldByName('COD_TIPO_GASTO').AsInteger);
+                                CriarItemListaGasto(lControleGetDados.ValorGastoPorTipoGasto.Get.NomeTipoGasto,
+                                                    lControleGetDados.ValorGastoPorTipoGasto.Get.ValorGasto,
+                                                    lControleGetDados.ValorGastoPorTipoGasto.Get.CodigoTipoGasto);
 
-                                dm.qrGetGastos.Next;
+                                lControleGetDados.ValorGastoPorTipoGasto.Proximo;
                               except
                                 on E: Exception do
                                 TThread.Synchronize(
                                   TThread.CurrentThread,
                                   PROCEDURE ()
-                                  BEGIN
+                                  begin
                                     TLoading.Hide;
                                     TDialogService.ShowMessage(e.Message);
-                                  END
+                                  end
                                 );
                               end;
                             end;
@@ -358,7 +362,7 @@ begin
     ACanDelete := False;
 end;
 
-function TfrmListaGastos.PesquisarListView(
+{function TfrmListaGastos.PesquisarListView(
   const pComponentePadrao: TFmxObject): TListView;
 var
   lTotalFilhos: Integer;
@@ -375,14 +379,14 @@ begin
       Result := TListView(pComponentePadrao.Children[lI]);
     end;
   end;
-end;
+end; }
 
 procedure TfrmListaGastos.SetDataGasto(const Value: TDateTime);
 begin
   FDataGasto := Value;
 end;
 
-procedure TfrmListaGastos.TratarReprimirExpandir(
+{procedure TfrmListaGastos.TratarReprimirExpandir(
   const pRetanguloMaste: TRectangle;
   const pBotaoReimprimirExpandir: TSpeedButton; const pCodTipoGasto: Integer);
 var
@@ -411,6 +415,6 @@ begin
       end;
     end;
   end;
-end;
+end; }
 
 end.

@@ -28,7 +28,10 @@ uses
   Controle.Interfaces in 'Controle\Controle.Interfaces.pas',
   Controle in 'Controle\Controle.pas',
   Model.Conexao.FireDac in 'Model\Conexao\Model.Conexao.FireDac.pas',
-  Model.Conexao.Interfaces in 'Model\Conexao\Model.Conexao.Interfaces.pas';
+  Model.Conexao.Interfaces in 'Model\Conexao\Model.Conexao.Interfaces.pas',
+  Model.DAO.GetValorGastoPorTipoGasto in 'Model\DAO\Model.DAO.GetValorGastoPorTipoGasto.pas',
+  Model.DAO.Get in 'Model\DAO\Model.DAO.Get.pas',
+  Model.Conexao in 'Model\Conexao\Model.Conexao.pas';
 
 {$R *.res}
 

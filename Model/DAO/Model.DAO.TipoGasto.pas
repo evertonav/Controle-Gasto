@@ -4,7 +4,7 @@ interface
 
 uses
   Model.Entidade.TipoGasto, DataModule, Model.Conexao.Interfaces,
-  Model.Conexao.Firedac, Model.DAO.Interfaces;
+  Model.DAO.Interfaces, Model.Conexao;
 
 type
   TModelDAOTipoGasto = class(TInterfacedObject, IModelDAOInterface<TEntidadeTipoGasto>)
@@ -31,7 +31,7 @@ uses
 constructor TModelDAOTipoGasto.Create;
 begin
   FEntidadeTipoGasto := TEntidadeTipoGasto.Create(Self);
-  FConexao := TModelConexaoFiredac.Criar;
+  FConexao := TModelConexao.Criar;
 end;
 
 class function TModelDAOTipoGasto.Criar: IModelDAOInterface<TEntidadeTipoGasto>;

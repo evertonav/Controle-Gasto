@@ -167,7 +167,7 @@ inherited frmListaGastos: TfrmListaGastos
           Align = Right
           Position.X = 248.000000000000000000
           Size.Width = 49.000000000000000000
-          Size.Height = 48.000000000000000000
+          Size.Height = 40.000000000000000000
           Size.PlatformDefault = False
           OnClick = btnExpandirReprimirClick
           object imgReprimir: TImage
@@ -192,6 +192,7 @@ inherited frmListaGastos: TfrmListaGastos
             Size.Width = 49.000000000000000000
             Size.Height = 48.000000000000000000
             Size.PlatformDefault = False
+            Visible = False
             object FillRGBEffect2: TFillRGBEffect
               Color = claWhite
             end
