@@ -3,13 +3,33 @@ unit Model.Conexao.FireDac;
 interface
 
 uses
-  FireDAC.Comp.Client, Model.Conexao.Interfaces, Data.DB;
+  FireDAC.Comp.Client,
+  Model.Conexao.Interfaces,
+  Data.DB,
+  FireDAC.Stan.Def,
+  FireDAC.DApt,
+  FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLiteDef,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.SQLite,
+  FireDAC.FMXUI.Wait,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet;
 
 type
   TModelConexaoFiredac = class(TInterfacedObject, iModelConexaoInterfaces)
   private
     FConexao: TFDConnection;
     FQuery: TFDQuery;
+
     function Conectar: Boolean;
   public
     constructor Create;

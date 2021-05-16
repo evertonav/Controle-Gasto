@@ -47,7 +47,6 @@ var
 implementation
 
 Uses
-  DataModule,
   Controller.Utils,
   Loading,
   uFrmListaGenerica,

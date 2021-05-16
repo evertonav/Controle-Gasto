@@ -37,8 +37,11 @@ type
 implementation
 
 Uses
-  System.SysUtils, DataModule, System.DateUtils, FMX.DialogService,
-  FireDAC.Stan.Param, Data.DB, Controller.Utils;
+  System.SysUtils,
+  System.DateUtils,
+  FMX.DialogService,
+  FireDAC.Stan.Param,
+  Controller.Utils;
 
 { TGasto }
 

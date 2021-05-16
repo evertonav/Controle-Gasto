@@ -48,7 +48,7 @@ var
 implementation
 
 Uses
-  Loading, DataModule, FMX.DialogService;
+  Loading, FMX.DialogService;
 
 {$R *.fmx}
 

@@ -80,8 +80,7 @@ Uses
   System.DateUtils,
   Controller.Utils,
   Controller.GetDados,
-  Controller.GetDados.Interfaces,
-  DataModule;
+  Controller.GetDados.Interfaces,;
 
 {$R *.fmx}
 

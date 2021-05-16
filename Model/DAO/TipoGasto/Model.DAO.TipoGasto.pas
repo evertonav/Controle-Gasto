@@ -3,8 +3,10 @@ unit Model.DAO.TipoGasto;
 interface
 
 uses
-  Model.Entidade.TipoGasto, DataModule, Model.Conexao.Interfaces,
-  Model.DAO.Interfaces, Model.Conexao;
+  Model.Entidade.TipoGasto,
+  Model.Conexao.Interfaces,
+  Model.DAO.Interfaces,
+  Model.Conexao;
 
 type
   TModelDAOTipoGasto = class(TInterfacedObject, IModelDAOInterface<TEntidadeTipoGasto>)

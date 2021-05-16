@@ -8,7 +8,7 @@ uses
   FMX.Layouts, FMX.ListView.Types, FMX.ListView.Appearances,
   FMX.ListView.Adapters.Base, FMX.ListView, FMX.Controls.Presentation,
   FMX.StdCtrls, FMX.Ani, FMX.ListBox, FMX.Edit, FMX.SearchBox, FMX.Effects,
-  FMX.Filter.Effects, DataModule, Loading;
+  FMX.Filter.Effects, Loading;
 
 type
   TfrmListaGenerica = class(TForm)
