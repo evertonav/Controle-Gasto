@@ -48,11 +48,11 @@ implementation
 
 Uses
   DataModule,
-  uUtils,
+  Controller.Utils,
   Loading,
   uFrmListaGenerica,
   uFrmPrincipal,
-  Controle;
+  Controller;
 
 {$R *.fmx}
 
@@ -71,7 +71,7 @@ begin
   frmInserirGasto.InserirComThread(
     procedure ()
     begin
-      TControle
+      TController
         .Criar
           .Gasto
             .Entidade

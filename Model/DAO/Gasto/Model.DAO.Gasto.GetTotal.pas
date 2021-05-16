@@ -1,16 +1,16 @@
-unit Model.DAO.GetTotalGasto;
+unit Model.DAO.Gasto.GetTotal;
 
 interface
 
 USES
   Model.Entidade.Gasto,
   Model.DAO.Gasto,
-  Model.DAO.GetTotalInterface,
+  Model.DAO.GetTotal.Interfaces,
   Model.Conexao.Interfaces;
 
 type
-  TModelDAOGetDadosGasto = class(TInterfacedObject,
-                                 IModelDAOGetTotalInterface<TEntidadeGasto,
+  TModelDAOGastoGetDados = class(TInterfacedObject,
+                                 IModelDAOGetTotal<TEntidadeGasto,
                                                             Double>)
   private
     FConexao: iModelConexaoInterfaces;
@@ -26,17 +26,20 @@ type
 implementation
 
 uses
-  DataModule, uUtils, System.DateUtils, System.SysUtils, Model.Conexao;
+  Controller.Utils,
+  System.DateUtils,
+  System.SysUtils,
+  Model.Conexao;
 
-{ TModelDAOGetDadosGasto }
+{ TModelDAOGastoGetDados }
 
-constructor TModelDAOGetDadosGasto.Create;
+constructor TModelDAOGastoGetDados.Create;
 begin
   FEntidadeGasto := TEntidadeGasto.Create(TModelDAOGasto.Create);
   FConexao := TModelConexao.Criar;
 end;
 
-destructor TModelDAOGetDadosGasto.Destroy;
+destructor TModelDAOGastoGetDados.Destroy;
 begin
   if Assigned(FEntidadeGasto) then
     FEntidadeGasto.DisposeOf;
@@ -44,12 +47,12 @@ begin
   inherited;
 end;
 
-function TModelDAOGetDadosGasto.Entidade: TEntidadeGasto;
+function TModelDAOGastoGetDados.Entidade: TEntidadeGasto;
 begin
   Result := FEntidadeGasto;
 end;
 
-function TModelDAOGetDadosGasto.GetTotal: Double;
+function TModelDAOGastoGetDados.GetTotal: Double;
 const
   CONST_SQL_GET_TOTAL = ' SELECT '
                       + '  SUM(VALOR_GASTO) AS VALOR_GASTO '

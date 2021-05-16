@@ -77,7 +77,10 @@ Uses
   uFrmInserirGasto,
   uFrmCadTipoGasto,
   uFrmListaGastos,
-  System.DateUtils, uUtils, Controle.GetDados, Controle.GetDadosInterface,
+  System.DateUtils,
+  Controller.Utils,
+  Controller.GetDados,
+  Controller.GetDados.Interfaces,
   DataModule;
 
 {$R *.fmx}
@@ -121,9 +124,9 @@ end;
 
 procedure TfrmPrincipal.AtualizarTotalGasto(const pDataGasto: TDate);
 var
-  lGetDadosGasto: IControleGetDadosInterface;
+  lGetDadosGasto: IControllerGetDadosInterfaces;
 begin
-  lGetDadosGasto := TControleGetDados.Criar;
+  lGetDadosGasto := TControllerGetDados.Criar;
 
   if pDataGasto = -1 then
     lGetDadosGasto.DadosGasto.Entidade.Data(lblData.TagFloat)

@@ -30,7 +30,9 @@ var
 implementation
 
 Uses
-  uFrmPrincipal, DataModule, Controle.Interfaces, Controle;
+  uFrmPrincipal,
+  Controller.Interfaces,
+  Controller;
 
 {$R *.fmx}
 
@@ -39,7 +41,7 @@ begin
   frmCadTipoGasto.InserirComThread(
     procedure ()
     begin
-      TControle
+      TController
         .Criar
           .TipoGasto
             .Entidade

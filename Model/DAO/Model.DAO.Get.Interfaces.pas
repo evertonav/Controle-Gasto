@@ -1,4 +1,4 @@
-unit Model.DAO.GetInterface;
+unit Model.DAO.Get.Interfaces;
 
 interface
 

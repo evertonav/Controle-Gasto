@@ -1,9 +1,9 @@
-unit Model.DAO.GetTotalInterface;
+unit Model.DAO.GetTotal.Interfaces;
 
 interface
 
 type
-  IModelDAOGetTotalInterface<E, T> = interface
+  IModelDAOGetTotal<E, T> = interface
     function Entidade: E;
     function GetTotal: T;
   end;

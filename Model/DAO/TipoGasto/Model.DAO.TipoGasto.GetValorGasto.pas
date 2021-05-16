@@ -1,4 +1,4 @@
-unit Model.DAO.GetValorGastoPorTipoGasto;
+unit Model.DAO.TipoGasto.GetValorGasto;
 
 interface
 
@@ -8,8 +8,8 @@ Uses
   Model.Conexao,
   Data.DB,
   Model.Entidade.Gasto,
-  Model.DAO.GetInterface,
-  Model.DAO.GetParametrosInterface;
+  Model.DAO.Get.Interfaces,
+  Model.DAO.GetParametros.Interfaces;
 
 type
   TGasto = packed record
@@ -18,11 +18,11 @@ type
     NomeTipoGasto: string;
   end;
 
-  TModelDaoGetValorGastoPorTipoGasto = class(TInterfacedObject,
-                                             IModelDAOGet<TGasto>,
-                                             iModelDaoGetParametros<TGasto>)
+  TModelDAOTipoGastoGetValorGasto = class(TInterfacedObject,
+                                          IModelDAOGet<TGasto>,
+                                          iModelDaoGetParametros<TGasto>)
    private
-     FConexao: iModelConexaoInterfaces;
+     FConexao: IModelConexaoInterfaces;
      FDataInicial: TDate;
      FDataFinal: TDate;
      FQuery: TDataSet;
@@ -31,8 +31,8 @@ type
 
       class function Criar: IModelDAOGet<TGasto>;
 
-      function DataInicial(const pValor: TDate): iModelDaoGetParametros<TGasto>;
-      function DataFinal(const pValor: TDate): iModelDaoGetParametros<TGasto>;
+      function DataInicial(const pValor: TDate): IModelDaoGetParametros<TGasto>;
+      function DataFinal(const pValor: TDate): IModelDaoGetParametros<TGasto>;
 
       function Iniciar: IModelDAOGet<TGasto>;
       function Proximo: IModelDAOGet<TGasto>;
@@ -45,31 +45,31 @@ type
 
 implementation
 
-{ TModelDaoGetValorGastoPorTipoGasto }
+{ TModelDAOTipoGastoGetValorGasto }
 
-constructor TModelDaoGetValorGastoPorTipoGasto.Create;
+constructor TModelDAOTipoGastoGetValorGasto.Create;
 begin
   FConexao := TModelConexao.Criar;
 end;
 
-class function TModelDaoGetValorGastoPorTipoGasto.Criar: IModelDAOGet<TGasto>;
+class function TModelDAOTipoGastoGetValorGasto.Criar: IModelDAOGet<TGasto>;
 begin
   Result := Self.Create;
 end;
 
-function TModelDaoGetValorGastoPorTipoGasto.Fim: Boolean;
+function TModelDAOTipoGastoGetValorGasto.Fim: Boolean;
 begin
   Result := FQuery.Eof;
 end;
 
-function TModelDaoGetValorGastoPorTipoGasto.Get: TGasto;
+function TModelDAOTipoGastoGetValorGasto.Get: TGasto;
 begin
   Result.CodigoTipoGasto := FQuery.FieldByName('COD_TIPO_GASTO').AsInteger;
   Result.ValorGasto :=  FQuery.FieldByName('VALOR_GASTO').AsFloat;
   Result.NomeTipoGasto := FQuery.FieldByName('NOME_TIPO_GASTO').AsString;
 end;
 
-function TModelDaoGetValorGastoPorTipoGasto.DataFinal(
+function TModelDAOTipoGastoGetValorGasto.DataFinal(
   const pValor: TDate): iModelDaoGetParametros<TGasto>;
 begin
   FDataFinal := pValor;
@@ -77,7 +77,7 @@ begin
   Result := Self;
 end;
 
-function TModelDaoGetValorGastoPorTipoGasto.DataInicial(
+function TModelDAOTipoGastoGetValorGasto.DataInicial(
   const pValor: TDate): iModelDaoGetParametros<TGasto>;
 begin
   FDataInicial := pValor;
@@ -85,12 +85,12 @@ begin
   Result := Self;
 end;
 
-function TModelDaoGetValorGastoPorTipoGasto.Execucao: IModelDAOGet<TGasto>;
+function TModelDAOTipoGastoGetValorGasto.Execucao: IModelDAOGet<TGasto>;
 begin
   Result := Self;
 end;
 
-function TModelDaoGetValorGastoPorTipoGasto.Iniciar: IModelDAOGet<TGasto>;
+function TModelDAOTipoGastoGetValorGasto.Iniciar: IModelDAOGet<TGasto>;
 const
   CONST_GET_VALOR_GASTO_POR_TIPO_GASTO = ' SELECT '
                                        + '  SUM(G.VALOR_GASTO) AS VALOR_GASTO, '
@@ -117,7 +117,7 @@ begin
   Result := Self;
 end;
 
-function TModelDaoGetValorGastoPorTipoGasto.Proximo: IModelDAOGet<TGasto>;
+function TModelDAOTipoGastoGetValorGasto.Proximo: IModelDAOGet<TGasto>;
 begin
   FQuery.Next;
 

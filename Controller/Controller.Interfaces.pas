@@ -1,4 +1,4 @@
-unit Controle.Interfaces;
+unit Controller.Interfaces;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   Model.Entidade.Gasto;
 
 type
-  IControleInterfaces = Interface
+  IControllerInterfaces = Interface
     function TipoGasto: IModelDAOInterface<TEntidadeTipoGasto>;
     function Gasto: IModelDAOInterface<TEntidadeGasto>;
   End;

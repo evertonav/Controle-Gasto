@@ -86,12 +86,12 @@ Uses
   Loading,
   FMX.DialogService,
   System.DateUtils,
-  uUtils,
+  Controller.Utils,
   FireDAC.Stan.Param,
   uFrmPrincipal,
-  Controle,
-  Controle.GetDados,
-  Controle.GetDadosInterface;
+  Controller,
+  Controller.GetDados,
+  Controller.GetDados.Interfaces;
 
 {$R *.fmx}
 
@@ -234,7 +234,7 @@ begin
   lMinhaThread := TThread.CreateAnonymousThread(
                     procedure ()
                     var
-                      lControleGetDados: IControleGetDadosInterface;
+                      lControleGetDados: IControllerGetDadosInterfaces;
 
                       procedure CriarItemListaGasto(const pTitulo: string;
                         const pValor: Double; const pCodTipoGasto: Integer);
@@ -277,7 +277,7 @@ begin
                         );
 
                       try
-                        lControleGetDados := TControleGetDados.Criar;
+                        lControleGetDados := TControllerGetDados.Criar;
 
                         lControleGetDados
                           .ValorGastoPorTipoGasto

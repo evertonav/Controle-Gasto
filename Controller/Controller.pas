@@ -1,20 +1,23 @@
-unit Controle;
+unit Controller;
 
 interface
 
 uses
-  Model.DAO.Gasto, Model.DAO.Interfaces, Model.Entidade.TipoGasto,
-  Model.DAO.TipoGasto, Controle.Interfaces, Model.Entidade.Gasto;
+  Model.DAO.Gasto,
+  Model.DAO.Interfaces,
+  Model.Entidade.TipoGasto,
+  Model.DAO.TipoGasto,
+  Controller.Interfaces, Model.Entidade.Gasto;
 
 type
-  TControle = class(TInterfacedObject, IControleInterfaces)
+  TController = class(TInterfacedObject, IControllerInterfaces)
   private
     FModelDAOGasto: TModelDAOGasto;
     FModelDAOTipoGasto: TModelDAOTipoGasto;
   public
     destructor Destroy; override;
 
-    class function Criar: IControleInterfaces;
+    class function Criar: IControllerInterfaces;
     function Gasto: IModelDAOInterface<TEntidadeGasto>;
     function TipoGasto: IModelDAOInterface<TEntidadeTipoGasto>;
   end;
@@ -23,18 +26,18 @@ implementation
 
 { TController }
 
-class function TControle.Criar: IControleInterfaces;
+class function TController.Criar: IControllerInterfaces;
 begin
   Result := Self.Create;
 end;
 
-destructor TControle.Destroy;
+destructor TController.Destroy;
 begin
 
   inherited;
 end;
 
-function TControle.Gasto: IModelDAOInterface<TEntidadeGasto>;
+function TController.Gasto: IModelDAOInterface<TEntidadeGasto>;
 begin
   if not Assigned(FModelDAOGasto) then
     FModelDAOGasto := TModelDAOGasto.Create;
@@ -42,7 +45,7 @@ begin
   Result := FModelDAOGasto;
 end;
 
-function TControle.TipoGasto: IModelDAOInterface<TEntidadeTipoGasto>;
+function TController.TipoGasto: IModelDAOInterface<TEntidadeTipoGasto>;
 begin
   if not Assigned(FModelDAOTipoGasto) then
     FModelDAOTipoGasto := TModelDAOTipoGasto.Create;

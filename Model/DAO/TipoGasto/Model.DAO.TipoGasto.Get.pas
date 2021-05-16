@@ -1,9 +1,9 @@
-unit Model.DAO.GetTipoGasto;
+unit Model.DAO.TipoGasto.Get;
 
 interface
 
 uses
-  Model.DAO.GetInterface,
+  Model.DAO.Get.Interfaces,
   Model.Conexao,
   Model.Conexao.Interfaces,
   Data.DB;
@@ -14,7 +14,7 @@ type
     Nome: string;
   end;
 
-  TModelDaoGetTipoGasto = class(TInterfacedObject, IModelDAOGet<TTipoGasto>)
+  TModelDAOTipoGastoGet = class(TInterfacedObject, IModelDAOGet<TTipoGasto>)
   private
     FConexao: iModelConexaoInterfaces;
     FQuery: TDataSet;
@@ -30,25 +30,25 @@ type
 
 implementation
 
-{ TModelDaoGetTipoGasto }
+{ TModelDAOTipoGastoGet }
 
-constructor TModelDaoGetTipoGasto.Create;
+constructor TModelDAOTipoGastoGet.Create;
 begin
   FConexao := TModelConexao.Criar;
 end;
 
-function TModelDaoGetTipoGasto.Fim: Boolean;
+function TModelDAOTipoGastoGet.Fim: Boolean;
 begin
   Result := FQuery.Eof;
 end;
 
-function TModelDaoGetTipoGasto.Get: TTipoGasto;
+function TModelDAOTipoGastoGet.Get: TTipoGasto;
 begin
   Result.Codigo := FQuery.FieldByName('COD_TIPO_GASTO').AsInteger;
   Result.Nome := FQuery.FieldByName('NOME_TIPO_GASTO').AsString;
 end;
 
-function TModelDaoGetTipoGasto.Iniciar: IModelDAOGet<TTipoGasto>;
+function TModelDAOTipoGastoGet.Iniciar: IModelDAOGet<TTipoGasto>;
 const
   CONST_GET_TIPO_GASTO = ' SELECT '
                        + '   COD_TIPO_GASTO, '
@@ -65,7 +65,7 @@ begin
   Result := Self;
 end;
 
-function TModelDaoGetTipoGasto.Proximo: IModelDAOGet<TTipoGasto>;
+function TModelDAOTipoGastoGet.Proximo: IModelDAOGet<TTipoGasto>;
 begin
   FQuery.Next;
 

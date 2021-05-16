@@ -58,9 +58,9 @@ implementation
 uses
   uFrmInserirGasto,
   FMX.DialogService,
-  uUtils,
-  Controle.GetDados,
-  Controle.GetDadosInterface;
+  Controller.Utils,
+  Controller.GetDados,
+  Controller.GetDados.Interfaces;
 
 {$R *.fmx}
 
@@ -96,10 +96,10 @@ begin
                     procedure ()
                     var
                       lItemListBox: TListBoxItem;
-                      lControleGetDados: IControleGetDadosInterface;
+                      lControleGetDados: IControllerGetDadosInterfaces;
                     begin
                       try
-                        lControleGetDados := TControleGetDados.Criar;
+                        lControleGetDados := TControllerGetDados.Criar;
 
                         lControleGetDados.TipoGasto.Iniciar;
                       except

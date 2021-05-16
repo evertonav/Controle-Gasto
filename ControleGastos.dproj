@@ -6,7 +6,7 @@
         <MainSource>ControleGastos.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Android</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1119</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -332,12 +332,6 @@
             <Form>frmPadraoCadastro</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="DataModule.pas">
-            <Form>dm</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="uUtils.pas"/>
         <DCCReference Include="View\uFrmCadTipoGasto.pas">
             <Form>frmCadTipoGasto</Form>
             <FormType>fmx</FormType>
@@ -356,26 +350,27 @@
         </DCCReference>
         <DCCReference Include="Model\Entidade\Model.Entidade.Gasto.pas"/>
         <DCCReference Include="Model\Entidade\Model.Entidade.TipoGasto.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.Gasto.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.GetTotalGasto.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.GetTotalInterface.pas"/>
         <DCCReference Include="Model\DAO\Model.DAO.Interfaces.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.TipoGasto.pas"/>
-        <DCCReference Include="Controle\Controle.GetDados.pas"/>
-        <DCCReference Include="Controle\Controle.GetDadosInterface.pas"/>
-        <DCCReference Include="Controle\Controle.Interfaces.pas"/>
-        <DCCReference Include="Controle\Controle.pas"/>
         <DCCReference Include="Model\Conexao\Model.Conexao.FireDac.pas"/>
         <DCCReference Include="Model\Conexao\Model.Conexao.Interfaces.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.GetValorGastoPorTipoGasto.pas"/>
         <DCCReference Include="Model\Conexao\Model.Conexao.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.GetTipoGasto.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.GetParametrosInterface.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.GetInterface.pas"/>
         <DCCReference Include="View\uFrmListaGenerica.pas">
             <Form>frmListaGenerica</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="Controller\Controller.Utils.pas"/>
+        <DCCReference Include="Controller\Controller.GetDados.pas"/>
+        <DCCReference Include="Controller\Controller.pas"/>
+        <DCCReference Include="Controller\Controller.Interfaces.pas"/>
+        <DCCReference Include="Controller\Controller.GetDados.Interfaces.pas"/>
+        <DCCReference Include="Model\DAO\Gasto\Model.DAO.Gasto.pas"/>
+        <DCCReference Include="Model\DAO\Model.DAO.GetParametros.Interfaces.pas"/>
+        <DCCReference Include="Model\DAO\Model.DAO.GetTotal.Interfaces.pas"/>
+        <DCCReference Include="Model\DAO\Model.DAO.Get.Interfaces.pas"/>
+        <DCCReference Include="Model\DAO\Gasto\Model.DAO.Gasto.GetTotal.pas"/>
+        <DCCReference Include="Model\DAO\TipoGasto\Model.DAO.TipoGasto.Get.pas"/>
+        <DCCReference Include="Model\DAO\TipoGasto\Model.DAO.TipoGasto.pas"/>
+        <DCCReference Include="Model\DAO\TipoGasto\Model.DAO.TipoGasto.GetValorGasto.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -403,13 +398,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Android\Release\libControleGastos.so" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Android">
-                        <RemoteName>libControleGastos.so</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png" Configuration="Debug" Class="Android_LauncherIcon36">
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_48x48.png" Configuration="Release" Class="Android_LauncherIcon48">
                     <Platform Name="Android">
                         <RemoteName>ic_launcher.png</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -417,6 +406,12 @@
                 </DeployFile>
                 <DeployFile LocalName="Android\Release\styles.xml" Configuration="Release" Class="AndroidSplashStyles">
                     <Platform Name="Android">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png" Configuration="Debug" Class="Android_LauncherIcon36">
+                    <Platform Name="Android">
+                        <RemoteName>ic_launcher.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -645,14 +640,14 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Android\Release\AndroidManifest.xml" Configuration="Release" Class="ProjectAndroidManifest">
+                <DeployFile LocalName="Android\Release\libControleGastos.so" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Android">
+                        <RemoteName>libControleGastos.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_48x48.png" Configuration="Release" Class="Android_LauncherIcon48">
+                <DeployFile LocalName="Android\Release\AndroidManifest.xml" Configuration="Release" Class="ProjectAndroidManifest">
                     <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
