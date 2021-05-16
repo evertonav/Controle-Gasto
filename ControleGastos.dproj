@@ -6,7 +6,7 @@
         <MainSource>ControleGastos.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">Android</Platform>
         <TargetedPlatforms>1119</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -338,10 +338,6 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uUtils.pas"/>
-        <DCCReference Include="uFrmListaGenerica.pas">
-            <Form>frmListaGenerica</Form>
-            <FormType>fmx</FormType>
-        </DCCReference>
         <DCCReference Include="View\uFrmCadTipoGasto.pas">
             <Form>frmCadTipoGasto</Form>
             <FormType>fmx</FormType>
@@ -372,8 +368,14 @@
         <DCCReference Include="Model\Conexao\Model.Conexao.FireDac.pas"/>
         <DCCReference Include="Model\Conexao\Model.Conexao.Interfaces.pas"/>
         <DCCReference Include="Model\DAO\Model.DAO.GetValorGastoPorTipoGasto.pas"/>
-        <DCCReference Include="Model\DAO\Model.DAO.Get.pas"/>
         <DCCReference Include="Model\Conexao\Model.Conexao.pas"/>
+        <DCCReference Include="Model\DAO\Model.DAO.GetTipoGasto.pas"/>
+        <DCCReference Include="Model\DAO\Model.DAO.GetParametrosInterface.pas"/>
+        <DCCReference Include="Model\DAO\Model.DAO.GetInterface.pas"/>
+        <DCCReference Include="View\uFrmListaGenerica.pas">
+            <Form>frmListaGenerica</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -401,20 +403,20 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Android\Release\classes.dex" Configuration="Release" Class="AndroidClassesDexFile">
+                <DeployFile LocalName="Android\Release\libControleGastos.so" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Android">
-                        <RemoteName>classes.dex</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Android\Release\styles.xml" Configuration="Release" Class="AndroidSplashStyles">
-                    <Platform Name="Android">
+                        <RemoteName>libControleGastos.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png" Configuration="Debug" Class="Android_LauncherIcon36">
                     <Platform Name="Android">
                         <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android\Release\styles.xml" Configuration="Release" Class="AndroidSplashStyles">
+                    <Platform Name="Android">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -637,14 +639,14 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Android\Release\AndroidManifest.xml" Configuration="Release" Class="ProjectAndroidManifest">
+                <DeployFile LocalName="Android\Release\classes.dex" Configuration="Release" Class="AndroidClassesDexFile">
                     <Platform Name="Android">
+                        <RemoteName>classes.dex</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Android\Release\libControleGastos.so" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="Android\Release\AndroidManifest.xml" Configuration="Release" Class="ProjectAndroidManifest">
                     <Platform Name="Android">
-                        <RemoteName>libControleGastos.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -25,18 +25,26 @@ type
     lbiGenerico: TListBoxItem;
     lneSeparacaoLista: TLine;
     cclPesquisa: TCircle;
-    imgSair: TImage;
     sbxGenerico: TSearchBox;
     btnPesquisa: TSpeedButton;
+    rctContainerBottom: TRectangle;
+    btnVoltar: TSpeedButton;
     procedure cclPesquisaClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
     procedure imgSairClick(Sender: TObject);
     procedure lbiGenericoClick(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
   private
     { Private declarations }
     procedure CarregarListBoxProduto(const pListBox: TListBox;
                                      const pCarregarVendas: Boolean;
                                      const pItemListBoxClonar: TListBoxItem);
+
+    procedure RemoverLayout(const pNomeTipoGasto: string;
+                            const pTagTipoGasto: Integer;
+                            const pLayoutRemover: TLayout);
+
+    procedure MostrarPesquisa(const pMostrar: Boolean);
   public
     { Public declarations }
     procedure CarregarTipoGastos;
@@ -48,12 +56,19 @@ var
 implementation
 
 uses
-  uFrmInserirGasto, FMX.DialogService, uUtils;
+  uFrmInserirGasto,
+  FMX.DialogService,
+  uUtils,
+  Controle.GetDados,
+  Controle.GetDadosInterface;
 
 {$R *.fmx}
 
 procedure TfrmListaGenerica.CarregarTipoGastos;
 begin
+  sbxGenerico.Text := EmptyStr;
+  MostrarPesquisa(False);
+
   TFuncLista.LimparLista(lbxGenerico, lbiGenerico.Name);
 
   CarregarListBoxProduto(lbxGenerico, False, lbiGenerico);
@@ -65,6 +80,13 @@ begin
   sbxGenerico.Visible := True;
 end;
 
+procedure TfrmListaGenerica.btnVoltarClick(Sender: TObject);
+begin
+  RemoverLayout(frmInserirGasto.edtTipoGasto.Text,
+                frmInserirGasto.edtTipoGasto.Tag,
+                lytContents);
+end;
+
 procedure TfrmListaGenerica.CarregarListBoxProduto(const pListBox: TListBox;
   const pCarregarVendas: Boolean; const pItemListBoxClonar: TListBoxItem);
 var
@@ -73,16 +95,13 @@ begin
   lMinhaThread := TThread.CreateAnonymousThread(
                     procedure ()
                     var
-                      I: Integer;
                       lItemListBox: TListBoxItem;
+                      lControleGetDados: IControleGetDadosInterface;
                     begin
-                      DM.qrGetTipoGasto.Close;
-
                       try
-                        if not dm.qrGetTipoGasto.Prepared then
-                          DM.qrGetTipoGasto.Prepare;
+                        lControleGetDados := TControleGetDados.Criar;
 
-                        DM.qrGetTipoGasto.Open;
+                        lControleGetDados.TipoGasto.Iniciar;
                       except
                         on E: Exception do
                         begin
@@ -107,18 +126,18 @@ begin
                         END
                         );
 
-                      for I := 0 to DM.qrGetTipoGasto.RecordCount - 1 do
+                      while not lControleGetDados.TipoGasto.Fim do
                       begin
                         lItemListBox := TListBoxItem(pItemListBoxClonar.Clone(pListBox));
 
-                        lItemListBox.Text := dm.qrGetTipoGasto.FieldByName('NOME_TIPO_GASTO').AsString;
+                        lItemListBox.Text := lControleGetDados.TipoGasto.Get.Nome;
 
                         lItemListBox.OnClick := pItemListBoxClonar.OnClick;
                         lItemListBox.Parent := pListBox;
-                        lItemListBox.Tag := DM.qrGetTipoGasto.FieldByName('COD_TIPO_GASTO').AsInteger;
+                        lItemListBox.Tag := lControleGetDados.TipoGasto.Get.Codigo;
                         lItemListBox.Visible := True;
 
-                        dm.qrGetTipoGasto.Next;
+                        lControleGetDados.TipoGasto.Proximo;
                       end;
 
                       TThread.Synchronize(
@@ -146,18 +165,32 @@ end;
 
 procedure TfrmListaGenerica.lbiGenericoClick(Sender: TObject);
 begin
-  frmInserirGasto.edtTipoGasto.Text := TListBoxItem(Sender).Text;
-  frmInserirGasto.edtTipoGasto.Tag := TListBoxItem(Sender).Tag;
+  RemoverLayout(TListBoxItem(Sender).Text,
+                TListBoxItem(Sender).Tag,
+                lytContents);
+end;
 
-  frmInserirGasto.RemoveObject(lytContents);
+procedure TfrmListaGenerica.MostrarPesquisa(const pMostrar: Boolean);
+begin
+  lytTitulo.Visible := not pMostrar;
+  sbxGenerico.Visible := pMostrar;
+
+  if pMostrar then
+    sbxGenerico.SetFocus;
+end;
+
+procedure TfrmListaGenerica.RemoverLayout(const pNomeTipoGasto: string;
+  const pTagTipoGasto: Integer; const pLayoutRemover: TLayout);
+begin
+  frmInserirGasto.edtTipoGasto.Text := pNomeTipoGasto;
+  frmInserirGasto.edtTipoGasto.Tag := pTagTipoGasto;
+
+  frmInserirGasto.RemoveObject(pLayoutRemover);
 end;
 
 procedure TfrmListaGenerica.btnPesquisaClick(Sender: TObject);
 begin
-  lytTitulo.Visible := False;
-  sbxGenerico.Visible := True;
-
-  sbxGenerico.SetFocus;
+  MostrarPesquisa(True);
 end;
 
 end.

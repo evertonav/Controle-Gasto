@@ -11,7 +11,6 @@ uses
   uFrmPadraoCadastro in 'uFrmPadraoCadastro.pas' {frmPadraoCadastro},
   DataModule in 'DataModule.pas' {dm: TDataModule},
   uUtils in 'uUtils.pas',
-  uFrmListaGenerica in 'uFrmListaGenerica.pas' {frmListaGenerica},
   uFrmCadTipoGasto in 'View\uFrmCadTipoGasto.pas' {frmCadTipoGasto},
   uFrmInserirGasto in 'View\uFrmInserirGasto.pas' {frmInserirGasto},
   uFrmListaGastos in 'View\uFrmListaGastos.pas' {frmListaGastos},
@@ -30,8 +29,11 @@ uses
   Model.Conexao.FireDac in 'Model\Conexao\Model.Conexao.FireDac.pas',
   Model.Conexao.Interfaces in 'Model\Conexao\Model.Conexao.Interfaces.pas',
   Model.DAO.GetValorGastoPorTipoGasto in 'Model\DAO\Model.DAO.GetValorGastoPorTipoGasto.pas',
-  Model.DAO.Get in 'Model\DAO\Model.DAO.Get.pas',
-  Model.Conexao in 'Model\Conexao\Model.Conexao.pas';
+  Model.Conexao in 'Model\Conexao\Model.Conexao.pas',
+  Model.DAO.GetTipoGasto in 'Model\DAO\Model.DAO.GetTipoGasto.pas',
+  Model.DAO.GetParametrosInterface in 'Model\DAO\Model.DAO.GetParametrosInterface.pas',
+  Model.DAO.GetInterface in 'Model\DAO\Model.DAO.GetInterface.pas',
+  uFrmListaGenerica in 'View\uFrmListaGenerica.pas' {frmListaGenerica};
 
 {$R *.res}
 
@@ -44,5 +46,6 @@ begin
   Application.CreateForm(TfrmListaGastos, frmListaGastos);
   Application.CreateForm(TfrmListaGastos, frmListaGastos);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmListaGenerica, frmListaGenerica);
   Application.Run;
 end.

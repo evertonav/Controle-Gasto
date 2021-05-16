@@ -46,7 +46,7 @@ object frmListaGenerica: TfrmListaGenerica
         Align = Client
         Fill.Color = claWhite
         Size.Width = 306.000000000000000000
-        Size.Height = 223.000000000000000000
+        Size.Height = 175.000000000000000000
         Size.PlatformDefault = False
         Stroke.Kind = None
       end
@@ -77,7 +77,7 @@ object frmListaGenerica: TfrmListaGenerica
           object lblSelecioneEstabelecimento: TLabel
             Align = Client
             StyledSettings = [Family, Style]
-            Size.Width = 219.000000000000000000
+            Size.Width = 252.000000000000000000
             Size.Height = 48.000000000000000000
             Size.PlatformDefault = False
             TextSettings.FontColor = claWhite
@@ -110,16 +110,6 @@ object frmListaGenerica: TfrmListaGenerica
               OnClick = btnPesquisaClick
             end
           end
-          object imgSair: TImage
-            MultiResBitmap = <
-              item
-              end>
-            Align = Left
-            Size.Width = 33.000000000000000000
-            Size.Height = 48.000000000000000000
-            Size.PlatformDefault = False
-            OnClick = imgSairClick
-          end
         end
         object lneSeparacaoLista: TLine
           Align = Bottom
@@ -134,7 +124,7 @@ object frmListaGenerica: TfrmListaGenerica
       object lbxGenerico: TListBox
         Align = Client
         Size.Width = 306.000000000000000000
-        Size.Height = 223.000000000000000000
+        Size.Height = 175.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = 'ListBox1Style1'
         TabOrder = 1
@@ -143,7 +133,7 @@ object frmListaGenerica: TfrmListaGenerica
         DefaultItemStyles.GroupHeaderStyle = ''
         DefaultItemStyles.GroupFooterStyle = ''
         Viewport.Width = 306.000000000000000000
-        Viewport.Height = 223.000000000000000000
+        Viewport.Height = 175.000000000000000000
         object lbiGenerico: TListBoxItem
           Margins.Top = 10.000000000000000000
           Position.Y = 10.000000000000000000
@@ -159,6 +149,26 @@ object frmListaGenerica: TfrmListaGenerica
           Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Visible = False
+        end
+      end
+      object rctContainerBottom: TRectangle
+        Align = Bottom
+        Fill.Color = xFFA8D67F
+        Position.Y = 224.000000000000000000
+        Size.Width = 306.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        object btnVoltar: TSpeedButton
+          Align = Right
+          StyledSettings = [Family, Size, Style]
+          Position.X = 233.000000000000000000
+          Size.Width = 73.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Voltar'
+          TextSettings.FontColor = claWhite
+          OnClick = btnVoltarClick
         end
       end
     end

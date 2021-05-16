@@ -4,22 +4,26 @@ interface
 
 uses
   Controle.GetDadosInterface,
+  Model.DAO.GetInterface,
   Model.DAO.GetTotalInterface,
+  Model.DAO.GetParametrosInterface,
   Model.DAO.GetTotalGasto,
   Model.Entidade.Gasto,
-  Model.DAO.GetValorGastoPorTipoGasto,
-  Model.DAO.Get;
+  Model.DAO.GetTipoGasto,
+  Model.DAO.GetValorGastoPorTipoGasto;
 
 type
   TControleGetDados = class(TInterfacedObject, IControleGetDadosInterface)
   private
     FGetDadosGasto: TModelDAOGetDadosGasto;
     FValorGastoPorTipoGasto: TModelDaoGetValorGastoPorTipoGasto;
+    FTipoGasto: TModelDaoGetTipoGasto;
   public
     class function Criar: IControleGetDadosInterface;
 
     function DadosGasto: IModelDAOGetTotalInterface<TEntidadeGasto, Double>;
-    function ValorGastoPorTipoGasto: IModelDAOGet<TGasto>;
+    function ValorGastoPorTipoGasto: IModelDaoGetParametros<TGasto>;
+    function TipoGasto: IModelDAOGet<TTipoGasto>;
   end;
 
 implementation
@@ -39,7 +43,15 @@ begin
   Result := FGetDadosGasto;
 end;
 
-function TControleGetDados.ValorGastoPorTipoGasto: IModelDAOGet<TGasto>;
+function TControleGetDados.TipoGasto: IModelDAOGet<TTipoGasto>;
+begin
+  if not Assigned(FTipoGasto) then
+    FTipoGasto := TModelDaoGetTipoGasto.Create;
+
+  Result := FTipoGasto;
+end;
+
+function TControleGetDados.ValorGastoPorTipoGasto: iModelDaoGetParametros<TGasto>;
 begin
   if not Assigned(FValorGastoPorTipoGasto) then
     FValorGastoPorTipoGasto := TModelDaoGetValorGastoPorTipoGasto.Create;

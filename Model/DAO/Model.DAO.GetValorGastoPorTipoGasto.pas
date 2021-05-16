@@ -8,7 +8,8 @@ Uses
   Model.Conexao,
   Data.DB,
   Model.Entidade.Gasto,
-  Model.DAO.Get;
+  Model.DAO.GetInterface,
+  Model.DAO.GetParametrosInterface;
 
 type
   TGasto = packed record
@@ -17,7 +18,9 @@ type
     NomeTipoGasto: string;
   end;
 
-  TModelDaoGetValorGastoPorTipoGasto = class(TInterfacedObject, IModelDAOGet<TGasto>)
+  TModelDaoGetValorGastoPorTipoGasto = class(TInterfacedObject,
+                                             IModelDAOGet<TGasto>,
+                                             iModelDaoGetParametros<TGasto>)
    private
      FConexao: iModelConexaoInterfaces;
      FDataInicial: TDate;
@@ -28,14 +31,16 @@ type
 
       class function Criar: IModelDAOGet<TGasto>;
 
-      function DataInicial(const pValor: TDate): IModelDAOGet<TGasto>;
-      function DataFinal(const pValor: TDate): IModelDAOGet<TGasto>; overload;
+      function DataInicial(const pValor: TDate): iModelDaoGetParametros<TGasto>;
+      function DataFinal(const pValor: TDate): iModelDaoGetParametros<TGasto>;
 
       function Iniciar: IModelDAOGet<TGasto>;
       function Proximo: IModelDAOGet<TGasto>;
       function Fim: Boolean;
 
       function Get: TGasto;
+
+      function Execucao: IModelDAOGet<TGasto>;
   end;
 
 implementation
@@ -65,7 +70,7 @@ begin
 end;
 
 function TModelDaoGetValorGastoPorTipoGasto.DataFinal(
-  const pValor: TDate): IModelDAOGet<TGasto>;
+  const pValor: TDate): iModelDaoGetParametros<TGasto>;
 begin
   FDataFinal := pValor;
 
@@ -73,10 +78,15 @@ begin
 end;
 
 function TModelDaoGetValorGastoPorTipoGasto.DataInicial(
-  const pValor: TDate): IModelDAOGet<TGasto>;
+  const pValor: TDate): iModelDaoGetParametros<TGasto>;
 begin
   FDataInicial := pValor;
 
+  Result := Self;
+end;
+
+function TModelDaoGetValorGastoPorTipoGasto.Execucao: IModelDAOGet<TGasto>;
+begin
   Result := Self;
 end;
 

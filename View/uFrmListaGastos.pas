@@ -3,11 +3,27 @@ unit uFrmListaGastos;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, uFrmPadrao,
-  FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects, FMX.Layouts,
-  FMX.Effects, FMX.Filter.Effects, FMX.ListView.Types, FMX.ListView.Appearances,
-  FMX.ListView.Adapters.Base, FMX.ListView;
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  uFrmPadrao,
+  FMX.StdCtrls,
+  FMX.Controls.Presentation,
+  FMX.Objects,
+  FMX.Layouts,
+  FMX.Effects,
+  FMX.Filter.Effects,
+  FMX.ListView.Types,
+  FMX.ListView.Appearances,
+  FMX.ListView.Adapters.Base,
+  FMX.ListView;
 
 type
   TfrmListaGastos = class(TfrmPadrao)
@@ -45,9 +61,9 @@ type
 
     procedure SetDataGasto(const Value: TDateTime);
 
-    procedure DeletarGasto(const pCodGasto: Integer);
+    //procedure DeletarGasto(const pCodGasto: Integer);
 
-    procedure CarregarListaGasto(Sender: TObject);
+    //procedure CarregarListaGasto(Sender: TObject);
 
     {procedure CarregarGastoDetalhado(const pDataInicial: TDate;
                                      const pDataFinal: TDate ;
@@ -67,8 +83,14 @@ var
 implementation
 
 Uses
-  DataModule, Loading, FMX.DialogService, System.DateUtils, uUtils,
-  FireDAC.Stan.Param, uFrmPrincipal, Controle, Controle.GetDados,
+  Loading,
+  FMX.DialogService,
+  System.DateUtils,
+  uUtils,
+  FireDAC.Stan.Param,
+  uFrmPrincipal,
+  Controle,
+  Controle.GetDados,
   Controle.GetDadosInterface;
 
 {$R *.fmx}
@@ -123,7 +145,7 @@ begin
   lItemText.TagFloat := pCodigoGasto;
 end; }
 
-procedure TfrmListaGastos.DeletarGasto(const pCodGasto: Integer);
+{procedure TfrmListaGastos.DeletarGasto(const pCodGasto: Integer);
 var
   lMinhaThread: TThread;
 begin
@@ -173,7 +195,7 @@ begin
   lMinhaThread.FreeOnTerminate := True;
   lMinhaThread.OnTerminate := CarregarListaGasto;
   lMinhaThread.Start;
-end;
+end;  }
 
 {procedure TfrmListaGastos.CarregarGastoDetalhado(const pDataInicial,
   pDataFinal: TDate; const pCodigoTipoGasto: Integer);
@@ -200,10 +222,10 @@ GROUP BY G.VALOR_GASTO
   DM.qrGetGastoUnitario.Open;
 end;
       }
-procedure TfrmListaGastos.CarregarListaGasto(Sender: TObject);
+{procedure TfrmListaGastos.CarregarListaGasto(Sender: TObject);
 begin
   CarregarListaGastos;
-end;
+end;  }
 
 procedure TfrmListaGastos.CarregarListaGastos;
 var
@@ -261,7 +283,9 @@ begin
                           .ValorGastoPorTipoGasto
                             .DataInicial(StartOfTheMonth(DataGasto))
                             .DataFinal(EndOfTheMonth(DataGasto))
-                          .Iniciar;
+                          .Execucao
+                        .Iniciar;
+
                       except
                         on E: Exception do
                         TThread.Synchronize(
@@ -278,18 +302,18 @@ begin
                         try
                           vsbListaGastos.BeginUpdate;
                           try
-                            while not lControleGetDados.ValorGastoPorTipoGasto.Fim do
+                            while not lControleGetDados.ValorGastoPorTipoGasto.Execucao.Fim do
                             begin
                               try
                                 {CarregarGastoDetalhado(StartOfTheMonth(DataGasto),
                                                        EndOfTheMonth(DataGasto),
                                                        DM.qrGetGastos.FieldByName('COD_TIPO_GASTO').AsInteger);}
 
-                                CriarItemListaGasto(lControleGetDados.ValorGastoPorTipoGasto.Get.NomeTipoGasto,
-                                                    lControleGetDados.ValorGastoPorTipoGasto.Get.ValorGasto,
-                                                    lControleGetDados.ValorGastoPorTipoGasto.Get.CodigoTipoGasto);
+                                CriarItemListaGasto(lControleGetDados.ValorGastoPorTipoGasto.Execucao.Get.NomeTipoGasto,
+                                                    lControleGetDados.ValorGastoPorTipoGasto.Execucao.Get.ValorGasto,
+                                                    lControleGetDados.ValorGastoPorTipoGasto.Execucao.Get.CodigoTipoGasto);
 
-                                lControleGetDados.ValorGastoPorTipoGasto.Proximo;
+                                lControleGetDados.ValorGastoPorTipoGasto.Execucao.Proximo;
                               except
                                 on E: Exception do
                                 TThread.Synchronize(
@@ -351,15 +375,15 @@ end;
 
 procedure TfrmListaGastos.ltvItensGastoDeletingItem(Sender: TObject;
   AIndex: Integer; var ACanDelete: Boolean);
-var
-  txt : TListItemText;
+{var
+  txt : TListItemText;}
 begin
-  txt := TListItemText(TListView(Sender).Items[AIndex].Objects.FindDrawable('Text1'));
+ { txt := TListItemText(TListView(Sender).Items[AIndex].Objects.FindDrawable('Text1'));
 
   if txt.TagFloat <> 0 then
     DeletarGasto(StrToInt(txt.TagFloat.ToString))
   else
-    ACanDelete := False;
+    ACanDelete := False;}
 end;
 
 {function TfrmListaGastos.PesquisarListView(

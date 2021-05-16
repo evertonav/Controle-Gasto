@@ -1,4 +1,4 @@
-unit Model.DAO.Get;
+unit Model.DAO.GetInterface;
 
 interface
 
@@ -7,9 +7,6 @@ Uses
 
 type
   IModelDAOGet<T> = interface
-    function DataInicial(const pValor: TDate): IModelDAOGet<T>;
-    function DataFinal(const pValor: TDate): IModelDAOGet<T>;
-
     function Iniciar: IModelDAOGet<T>;
     function Proximo: IModelDAOGet<T>;
     function Fim: Boolean;

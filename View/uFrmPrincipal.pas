@@ -60,8 +60,6 @@ type
     procedure AbrirInsercaoGasto;
     procedure AbrirListaGastos;
 
-    procedure CriarDataModule;
-
     procedure AtualizarMesGasto(const pData: TDateTime);
 
     function ValidarRetornarAnoAtual(const pData: TDate): TDate;
@@ -76,8 +74,11 @@ var
 implementation
 
 Uses
-  uFrmInserirGasto, uFrmCadTipoGasto, uFrmListaGastos, DataModule,
-  System.DateUtils, uUtils, Controle.GetDados, Controle.GetDadosInterface;
+  uFrmInserirGasto,
+  uFrmCadTipoGasto,
+  uFrmListaGastos,
+  System.DateUtils, uUtils, Controle.GetDados, Controle.GetDadosInterface,
+  DataModule;
 
 {$R *.fmx}
 
@@ -153,12 +154,6 @@ begin
   AtualizarMesGasto(IncMonth(lblData.TagFloat, 1));
 end;
 
-procedure TfrmPrincipal.CriarDataModule;
-begin
-  if not Assigned(dm) then
-    dm := Tdm.Create(Self);
-end;
-
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := TCloseAction.caFree;
@@ -167,8 +162,6 @@ end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
-  CriarDataModule;
-
   AtualizarMesGasto(Now);
 end;
 
