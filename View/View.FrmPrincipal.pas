@@ -141,13 +141,13 @@ var
 begin
   lGetDadosGasto := TControllerGetDados.Criar;
 
-  if pDataGasto = -1 then
-    lGetDadosGasto.DadosGasto.Entidade.Data(lblData.TagFloat)
-  else
-    lGetDadosGasto.DadosGasto.Entidade.Data(pDataGasto);
+  lGetDadosGasto
+    .DadosGasto
+    .DataInicial(StartOfTheMonth(pDataGasto))
+    .DataFinal(EndOfTheMonth(pDataGasto));
 
   lblQtdVendido.Text := FormatFloat('R$#0.00',
-                                    lGetDadosGasto.DadosGasto.GetTotal);
+                                    lGetDadosGasto.DadosGasto.Total);
 end;
 
 procedure TfrmPrincipal.btnCadTipoGastoClick(Sender: TObject);

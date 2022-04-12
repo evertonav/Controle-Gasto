@@ -9,18 +9,25 @@ USES
   Model.Conexao.Interfaces;
 
 type
+  IModelDAOGetDadosGasto = interface
+    function DataInicial(const pValor: TDate): IModelDAOGetDadosGasto;
+    function DataFinal(const pValor: TDate): IModelDAOGetDadosGasto;
+    function Total: Double;
+  end;
+
   TModelDAOGastoGetDados = class(TInterfacedObject,
-                                 IModelDAOGetTotal<TEntidadeGasto,
-                                                            Double>)
+                                 IModelDAOGetDadosGasto)
   private
     FConexao: iModelConexaoInterfaces;
-    FEntidadeGasto: TEntidadeGasto;
+    FDataInicial: TDate;
+    FDataFinal: TDate;
   public
     constructor Create;
     destructor Destroy; override;
 
-    function Entidade: TEntidadeGasto;
-    function GetTotal: Double;
+    function DataInicial(const pValor: TDate): IModelDAOGetDadosGasto;
+    function DataFinal(const pValor: TDate): IModelDAOGetDadosGasto;
+    function Total: Double;
   end;
 
 implementation
@@ -35,24 +42,28 @@ uses
 
 constructor TModelDAOGastoGetDados.Create;
 begin
-  FEntidadeGasto := TEntidadeGasto.Create(TModelDAOGasto.Create);
   FConexao := TModelConexao.Criar;
+end;
+
+function TModelDAOGastoGetDados.DataFinal(
+  const pValor: TDate): IModelDAOGetDadosGasto;
+begin
+  FDataFinal := pValor;
+end;
+
+function TModelDAOGastoGetDados.DataInicial(
+  const pValor: TDate): IModelDAOGetDadosGasto;
+begin
+  FDataInicial := pValor;
 end;
 
 destructor TModelDAOGastoGetDados.Destroy;
 begin
-  if Assigned(FEntidadeGasto) then
-    FEntidadeGasto.DisposeOf;
 
   inherited;
 end;
 
-function TModelDAOGastoGetDados.Entidade: TEntidadeGasto;
-begin
-  Result := FEntidadeGasto;
-end;
-
-function TModelDAOGastoGetDados.GetTotal: Double;
+function TModelDAOGastoGetDados.Total: Double;
 const
   CONST_SQL_GET_TOTAL = ' SELECT '
                       + '  SUM(VALOR_GASTO) AS VALOR_GASTO '
@@ -65,8 +76,8 @@ var
 begin
   lTotalGasto := FConexao
                    .AdicionarSQL(CONST_SQL_GET_TOTAL)
-                     .AdicionarParametros('DATA_INI', Double(StartOfTheMonth(FEntidadeGasto.Data)))
-                     .AdicionarParametros('DATA_FIM', Double(EndOfTheMonth(FEntidadeGasto.Data)))
+                     .AdicionarParametros('DATA_INI', Double(FDataInicial))
+                     .AdicionarParametros('DATA_FIM', Double(FDataFinal))
                    .ExecutarRetornar.Fields[0].AsString;
 
   if Trim(lTotalGasto) = EmptyStr then

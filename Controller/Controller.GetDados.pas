@@ -15,13 +15,13 @@ uses
 type
   TControllerGetDados = class(TInterfacedObject, IControllerGetDadosInterfaces)
   private
-    FGetDadosGasto: TModelDAOGastoGetDados;
+    FGetDadosGasto: IModelDAOGetDadosGasto;
     FValorGastoPorTipoGasto: TModelDaoTipoGastoGetValorGasto;
     FTipoGasto: TModelDAOTipoGastoGet;
   public
     class function Criar: IControllerGetDadosInterfaces;
 
-    function DadosGasto: IModelDAOGetTotal<TEntidadeGasto, Double>;
+    function DadosGasto: IModelDAOGetDadosGasto;
     function ValorGastoPorTipoGasto: IModelDaoGetParametros<TGasto>;
     function TipoGasto: IModelDAOGet<TTipoGasto>;
   end;
@@ -35,7 +35,7 @@ begin
   Result := Self.Create;
 end;
 
-function TControllerGetDados.DadosGasto: IModelDAOGetTotal<TEntidadeGasto, Double>;
+function TControllerGetDados.DadosGasto: IModelDAOGetDadosGasto;
 begin
   if not Assigned(FGetDadosGasto) then
     FGetDadosGasto := TModelDAOGastoGetDados.Create;
